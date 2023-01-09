@@ -31,7 +31,7 @@ final class MainTabBarViewController: UITabBarController {
         let playViewController = UINavigationController(rootViewController: PlayViewController())
         playViewController.tabBarItem.image = UIImage(systemName: "play")
 
-        let personViewController = UINavigationController(rootViewController: PersonViewController())
+        let personViewController = UINavigationController(rootViewController: FavoriteViewController())
         personViewController.tabBarItem.image = UIImage(systemName: "person.fill")
 
         let controllers = [loginViewController, mainViewController, playViewController, personViewController]

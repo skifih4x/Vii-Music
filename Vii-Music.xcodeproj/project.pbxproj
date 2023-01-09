@@ -19,7 +19,7 @@
 		ECC494EB296B67F600571028 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494EA296B67F600571028 /* APICaller.swift */; };
 		ECC494ED296B681C00571028 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494EC296B681C00571028 /* Model.swift */; };
 		ECC494F0296B6A9200571028 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494EF296B6A9200571028 /* PlayViewController.swift */; };
-		ECC494F3296B6DC800571028 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494F2296B6DC800571028 /* PersonViewController.swift */; };
+		ECC494F3296B6DC800571028 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494F2296B6DC800571028 /* FavoriteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 		ECC494EA296B67F600571028 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		ECC494EC296B681C00571028 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		ECC494EF296B6A9200571028 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
-		ECC494F2296B6DC800571028 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		ECC494F2296B6DC800571028 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +179,7 @@
 		ECC494F1296B6DB900571028 /* Person */ = {
 			isa = PBXGroup;
 			children = (
-				ECC494F2296B6DC800571028 /* PersonViewController.swift */,
+				ECC494F2296B6DC800571028 /* FavoriteViewController.swift */,
 			);
 			path = Person;
 			sourceTree = "<group>";
@@ -260,7 +260,7 @@
 				008C9552296B416D00730E7A /* AppDelegate.swift in Sources */,
 				ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */,
 				ECC494EB296B67F600571028 /* APICaller.swift in Sources */,
-				ECC494F3296B6DC800571028 /* PersonViewController.swift in Sources */,
+				ECC494F3296B6DC800571028 /* FavoriteViewController.swift in Sources */,
 				ECC494E4296B660100571028 /* MainViewController.swift in Sources */,
 				ECC494E2296B65CB00571028 /* LoginView.swift in Sources */,
 				008C9554296B416D00730E7A /* SceneDelegate.swift in Sources */,
@@ -403,7 +403,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W9FSXFWG34;
+				DEVELOPMENT_TEAM = SGUZZQKR9A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Vii-Music/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -416,7 +416,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "artemorlov.Vii-Music";
+				PRODUCT_BUNDLE_IDENTIFIER = "Vii-Music";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -431,7 +431,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W9FSXFWG34;
+				DEVELOPMENT_TEAM = SGUZZQKR9A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Vii-Music/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -444,7 +444,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "artemorlov.Vii-Music";
+				PRODUCT_BUNDLE_IDENTIFIER = "Vii-Music";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
