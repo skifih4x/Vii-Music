@@ -9,36 +9,25 @@ import UIKit
 
 final class LoginViewController: UIViewController {
 
-    //MARK: - UIElements
+    // MARK: - Properties
 
-    private let logoImage: UIImageView = {
-        let image = UIImage(named: "logoBackground")
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    let customView = LoginView()
 
     //MARK: - LifeCycle
 
+    override func loadView() {
+        super.loadView()
+        view = customView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupHierarchy()
-        setupLayout()
+//        customView.singInButton.addTarget(self, action: #selector(registerAccount()), for: .touchUpInside)
     }
 
     //MARK: - Setup
 
-    func setupHierarchy() {
-        view.addSubview(logoImage)
-    }
-
-    func setupLayout() {
-        NSLayoutConstraint.activate([
-            logoImage.topAnchor.constraint(equalTo: view.topAnchor),
-            logoImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            logoImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            logoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-    }
+//    @objc func registerAccount() {
+//
+//    }
 }

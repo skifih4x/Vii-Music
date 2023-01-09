@@ -20,6 +20,8 @@
 		ECC494ED296B681C00571028 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494EC296B681C00571028 /* Model.swift */; };
 		ECC494F0296B6A9200571028 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494EF296B6A9200571028 /* PlayViewController.swift */; };
 		ECC494F3296B6DC800571028 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494F2296B6DC800571028 /* PersonViewController.swift */; };
+		ECD2CD8A296C4A37008F9542 /* Extensions+Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2CD89296C4A37008F9542 /* Extensions+Label.swift */; };
+		ECD2CD8E296C5487008F9542 /* Extensions+UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2CD8D296C5487008F9542 /* Extensions+UIStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		ECC494EC296B681C00571028 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		ECC494EF296B6A9200571028 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		ECC494F2296B6DC800571028 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		ECD2CD89296C4A37008F9542 /* Extensions+Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Label.swift"; sourceTree = "<group>"; };
+		ECD2CD8D296C5487008F9542 /* Extensions+UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIStackView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				ECC3B61B296C210300E7702B /* Extensions+TextField.swift */,
+				ECD2CD89296C4A37008F9542 /* Extensions+Label.swift */,
+				ECD2CD8D296C5487008F9542 /* Extensions+UIStackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -262,8 +268,10 @@
 				ECC494EB296B67F600571028 /* APICaller.swift in Sources */,
 				ECC494F3296B6DC800571028 /* PersonViewController.swift in Sources */,
 				ECC494E4296B660100571028 /* MainViewController.swift in Sources */,
+				ECD2CD8A296C4A37008F9542 /* Extensions+Label.swift in Sources */,
 				ECC494E2296B65CB00571028 /* LoginView.swift in Sources */,
 				008C9554296B416D00730E7A /* SceneDelegate.swift in Sources */,
+				ECD2CD8E296C5487008F9542 /* Extensions+UIStackView.swift in Sources */,
 				ECC494ED296B681C00571028 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
