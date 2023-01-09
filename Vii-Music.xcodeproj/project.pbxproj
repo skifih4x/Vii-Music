@@ -12,6 +12,7 @@
 		008C9556296B416D00730E7A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C9555296B416D00730E7A /* LoginViewController.swift */; };
 		008C955B296B416F00730E7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008C955A296B416F00730E7A /* Assets.xcassets */; };
 		008C955E296B416F00730E7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008C955C296B416F00730E7A /* LaunchScreen.storyboard */; };
+		ECC3B61C296C210300E7702B /* Extensions+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3B61B296C210300E7702B /* Extensions+TextField.swift */; };
 		ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494DE296B645200571028 /* MainTabBarController.swift */; };
 		ECC494E2296B65CB00571028 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494E1296B65CB00571028 /* LoginView.swift */; };
 		ECC494E4296B660100571028 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494E3296B660100571028 /* MainViewController.swift */; };
@@ -29,6 +30,7 @@
 		008C955A296B416F00730E7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		008C955D296B416F00730E7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		008C955F296B416F00730E7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECC3B61B296C210300E7702B /* Extensions+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+TextField.swift"; sourceTree = "<group>"; };
 		ECC494DE296B645200571028 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		ECC494E1296B65CB00571028 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		ECC494E3296B660100571028 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		ECC494E6296B665100571028 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ECC3B61B296C210300E7702B /* Extensions+TextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			files = (
 				008C9556296B416D00730E7A /* LoginViewController.swift in Sources */,
 				ECC494F0296B6A9200571028 /* PlayViewController.swift in Sources */,
+				ECC3B61C296C210300E7702B /* Extensions+TextField.swift in Sources */,
 				008C9552296B416D00730E7A /* AppDelegate.swift in Sources */,
 				ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */,
 				ECC494EB296B67F600571028 /* APICaller.swift in Sources */,
