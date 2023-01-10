@@ -11,7 +11,7 @@ final class LoginView: UIView {
 
     //MARK: - UIElements
 
-    lazy var singInButton: UIButton = {
+    let singInButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "lightBlue")
         button.setTitle("Sing in", for: .normal)
@@ -104,18 +104,6 @@ final class LoginView: UIView {
         return imageView
     }()
 
-//    private let textLabel: UILabel = {
-//        let textLabel = UILabel()
-//        let attributedString = NSMutableAttributedString(string: "lolka lada ad ad ", attributes: [.foregroundColor: UIColor.white])
-//        attributedString.append(NSAttributedString(string: "Link", attributes: [
-//            .foregroundColor: UIColor.white,
-//            .underlineStyle: NSUnderlineStyle.single,
-//            .link: URL(string: "http://www.example.com")!]))
-//        textLabel.attributedText = attributedString
-//        textLabel.translatesAutoresizingMaskIntoConstraints = false
-//        return textLabel
-//    }()
-
     //MARK: - LifeCycle
     
     init() {
@@ -147,7 +135,6 @@ final class LoginView: UIView {
         addSubview(separatorRight)
         addSubview(singUpButton)
         addSubview(imageGoogle)
-        //addSubview(textLabel)
     }
 
     func setupLayout() {
@@ -216,12 +203,7 @@ final class LoginView: UIView {
             imageGoogle.centerXAnchor.constraint(equalTo: singUpButton.centerXAnchor, constant: -105),
             imageGoogle.centerYAnchor.constraint(equalTo: singUpButton.centerYAnchor),
             imageGoogle.heightAnchor.constraint(equalToConstant: 26),
-            imageGoogle.widthAnchor.constraint(equalToConstant: 26),
-
-//            textLabel.topAnchor.constraint(equalTo: singUpButton.bottomAnchor, constant: 5),
-//            textLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-//            textLabel.widthAnchor.constraint(equalToConstant: 200),
-//            textLabel.heightAnchor.constraint(equalToConstant: 40),
+            imageGoogle.widthAnchor.constraint(equalToConstant: 26)
         ])
     }
 }

@@ -11,12 +11,30 @@ final class LoginInputView: UIView {
 
     //MARK: - UIElements
 
-    lazy var singInButton: UIButton = {
+    let singInButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "lightBlue")
         button.setTitle("Sing in", for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 6
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    let rememberMeButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 4
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
+    let forgotPasswordButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.titleLabel?.font = .systemFont(ofSize: 14)
+        button.setTitle("Forgot your password", for: .normal)
+        button.setTitleColor(UIColor(named: "lightBlue"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -81,7 +99,7 @@ final class LoginInputView: UIView {
     } ()
 
     private let singUpButton: UIButton = {
-        let button =   UIButton()
+        let button = UIButton()
         button.backgroundColor = .white
         button.setTitle("Sing up with Google", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -127,6 +145,8 @@ final class LoginInputView: UIView {
         addSubview(singUpButton)
         addSubview(imageGoogle)
         addSubview(rememberMeLabel)
+        addSubview(rememberMeButton)
+        addSubview(forgotPasswordButton)
     }
 
     func setupLayout() {
@@ -155,7 +175,7 @@ final class LoginInputView: UIView {
             passwordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -42),
             passwordTextField.heightAnchor.constraint(equalToConstant: 42),
 
-            singInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 50),
+            singInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 65),
             singInButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
             singInButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -42),
             singInButton.heightAnchor.constraint(equalToConstant: 38),
@@ -166,8 +186,18 @@ final class LoginInputView: UIView {
             passwordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
             passwordLabel.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -8),
 
-            //rememberMeLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
+            rememberMeLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
+            rememberMeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 65),
 
+            rememberMeButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
+            rememberMeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
+            rememberMeButton.heightAnchor.constraint(equalToConstant: 16),
+            rememberMeButton.widthAnchor.constraint(equalToConstant: 16),
+
+            forgotPasswordButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 14),
+            forgotPasswordButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -42),
+            forgotPasswordButton.heightAnchor.constraint(equalToConstant: 20),
+            forgotPasswordButton.widthAnchor.constraint(equalToConstant: 155),
 
             orContinueWithLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             orContinueWithLabel.topAnchor.constraint(equalTo: singInButton.bottomAnchor, constant: 20),
@@ -190,7 +220,7 @@ final class LoginInputView: UIView {
             imageGoogle.centerXAnchor.constraint(equalTo: singUpButton.centerXAnchor, constant: -105),
             imageGoogle.centerYAnchor.constraint(equalTo: singUpButton.centerYAnchor),
             imageGoogle.heightAnchor.constraint(equalToConstant: 26),
-            imageGoogle.widthAnchor.constraint(equalToConstant: 26),
+            imageGoogle.widthAnchor.constraint(equalToConstant: 26)
         ])
     }
 }
