@@ -1,13 +1,13 @@
 //
-//  LoginView.swift
+//  LoginInputView.swift
 //  Vii-Music
 //
-//  Created by Sergio on 8.01.23.
+//  Created by Sergio on 10.01.23.
 //
 
 import UIKit
 
-final class LoginView: UIView {
+final class LoginInputView: UIView {
 
     //MARK: - UIElements
 
@@ -37,22 +37,15 @@ final class LoginView: UIView {
         return imageView
     }()
 
-    private lazy var welcomeLabel = UILabel(text: "Welcome to Vii Music", size: 24, textColor: .systemTeal)
+    private lazy var viiMusicLabel = UILabel(text: "Vii Music", size: 24, textColor: .systemTeal)
 
-    private lazy var createLabel = UILabel(text: "Create your account",size: 30, textColor: .white)
+    private lazy var accountLabel = UILabel(text: "Sing in to your account",size: 30, textColor: .white)
 
-    private lazy var nameLabel = UILabel(text: "Name", size: 14, textColor: .white)
-
-    private lazy var emailLabel = UILabel(text: "Email", size: 14, textColor: .white)
+    private lazy var emailLabel = UILabel(text: "Email address", size: 14, textColor: .white)
 
     private lazy var passwordLabel = UILabel(text: "Password", size: 14, textColor: .white)
 
-    private let nameTextField: UITextField = {
-        let textField = UITextField()
-        textField.addTextFieldSetup()
-        textField.setLeftPaddingPoints(10)
-        return textField
-    }()
+    private lazy var rememberMeLabel = UILabel(text: "Remember me", size: 14, textColor: .white)
 
     private let emailTextField: UITextField = {
         let textField = UITextField()
@@ -100,13 +93,12 @@ final class LoginView: UIView {
     private let imageGoogle: UIImageView = {
         let image = UIImage(named: "google")
         let imageView = UIImageView(image: image)
-        //imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
-    //MARK: - LifeCycle
     
+    //MARK: - LifeCycle
+
     init() {
         super.init(frame: .zero)
         setupHierarchy()
@@ -116,19 +108,17 @@ final class LoginView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     //MARK: - Setup
 
     func setupHierarchy() {
         addSubview(logoImage)
         addSubview(logoNote)
-        addSubview(welcomeLabel)
-        addSubview(createLabel)
-        addSubview(nameTextField)
+        addSubview(viiMusicLabel)
+        addSubview(accountLabel)
         addSubview(emailTextField)
         addSubview(passwordTextField)
         addSubview(singInButton)
-        addSubview(nameLabel)
         addSubview(emailLabel)
         addSubview(passwordLabel)
         addSubview(orContinueWithLabel)
@@ -136,6 +126,7 @@ final class LoginView: UIView {
         addSubview(separatorRight)
         addSubview(singUpButton)
         addSubview(imageGoogle)
+        addSubview(rememberMeLabel)
     }
 
     func setupLayout() {
@@ -145,43 +136,38 @@ final class LoginView: UIView {
             logoImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             logoImage.trailingAnchor.constraint(equalTo: trailingAnchor),
 
-            logoNote.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            logoNote.topAnchor.constraint(equalTo: topAnchor, constant: 140),
             logoNote.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            welcomeLabel.topAnchor.constraint(equalTo: logoNote.bottomAnchor, constant: 20),
-            welcomeLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            viiMusicLabel.topAnchor.constraint(equalTo: logoNote.bottomAnchor, constant: 20),
+            viiMusicLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            createLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 20),
-            createLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            accountLabel.topAnchor.constraint(equalTo: viiMusicLabel.bottomAnchor, constant: 20),
+            accountLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-            nameTextField.topAnchor.constraint(equalTo: createLabel.bottomAnchor, constant: 50),
-            nameTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
-            nameTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -42),
-            nameTextField.heightAnchor.constraint(equalToConstant: 42),
-
-            emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 50),
+            emailTextField.topAnchor.constraint(equalTo: accountLabel.bottomAnchor, constant: 50),
             emailTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
             emailTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -42),
             emailTextField.heightAnchor.constraint(equalToConstant: 42),
 
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 50),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 55),
             passwordTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
             passwordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -42),
             passwordTextField.heightAnchor.constraint(equalToConstant: 42),
 
-            singInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 28),
+            singInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 50),
             singInButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
             singInButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -42),
             singInButton.heightAnchor.constraint(equalToConstant: 38),
-
-            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
-            nameLabel.bottomAnchor.constraint(equalTo: nameTextField.topAnchor, constant: -8),
 
             emailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
             emailLabel.bottomAnchor.constraint(equalTo: emailTextField.topAnchor, constant: -8),
 
             passwordLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 42),
             passwordLabel.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -8),
+
+            //rememberMeLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
+
 
             orContinueWithLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             orContinueWithLabel.topAnchor.constraint(equalTo: singInButton.bottomAnchor, constant: 20),
@@ -205,7 +191,6 @@ final class LoginView: UIView {
             imageGoogle.centerYAnchor.constraint(equalTo: singUpButton.centerYAnchor),
             imageGoogle.heightAnchor.constraint(equalToConstant: 26),
             imageGoogle.widthAnchor.constraint(equalToConstant: 26),
-
         ])
     }
 }
