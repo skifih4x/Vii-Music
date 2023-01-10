@@ -12,6 +12,8 @@
 		008C9556296B416D00730E7A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C9555296B416D00730E7A /* LoginViewController.swift */; };
 		008C955B296B416F00730E7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008C955A296B416F00730E7A /* Assets.xcassets */; };
 		008C955E296B416F00730E7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008C955C296B416F00730E7A /* LaunchScreen.storyboard */; };
+		EC2D4987296D94F500C2C121 /* LoginInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2D4986296D94F500C2C121 /* LoginInputController.swift */; };
+		EC2D4989296D950800C2C121 /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2D4988296D950800C2C121 /* LoginInputView.swift */; };
 		ECC3B61C296C210300E7702B /* Extensions+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3B61B296C210300E7702B /* Extensions+TextField.swift */; };
 		ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494DE296B645200571028 /* MainTabBarController.swift */; };
 		ECC494E2296B65CB00571028 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494E1296B65CB00571028 /* LoginView.swift */; };
@@ -20,6 +22,8 @@
 		ECC494ED296B681C00571028 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494EC296B681C00571028 /* Model.swift */; };
 		ECC494F0296B6A9200571028 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494EF296B6A9200571028 /* PlayViewController.swift */; };
 		ECC494F3296B6DC800571028 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494F2296B6DC800571028 /* PersonViewController.swift */; };
+		ECD2CD8A296C4A37008F9542 /* Extensions+Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2CD89296C4A37008F9542 /* Extensions+Label.swift */; };
+		ECD2CD8E296C5487008F9542 /* Extensions+UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2CD8D296C5487008F9542 /* Extensions+UIStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,8 @@
 		008C955A296B416F00730E7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		008C955D296B416F00730E7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		008C955F296B416F00730E7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC2D4986296D94F500C2C121 /* LoginInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputController.swift; sourceTree = "<group>"; };
+		EC2D4988296D950800C2C121 /* LoginInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputView.swift; sourceTree = "<group>"; };
 		ECC3B61B296C210300E7702B /* Extensions+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+TextField.swift"; sourceTree = "<group>"; };
 		ECC494DE296B645200571028 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		ECC494E1296B65CB00571028 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -38,6 +44,8 @@
 		ECC494EC296B681C00571028 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		ECC494EF296B6A9200571028 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		ECC494F2296B6DC800571028 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		ECD2CD89296C4A37008F9542 /* Extensions+Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Label.swift"; sourceTree = "<group>"; };
+		ECD2CD8D296C5487008F9542 /* Extensions+UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIStackView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +88,24 @@
 			path = "Vii-Music";
 			sourceTree = "<group>";
 		};
+		EC2D4984296D941800C2C121 /* LoginRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				008C9555296B416D00730E7A /* LoginViewController.swift */,
+				ECC494E1296B65CB00571028 /* LoginView.swift */,
+			);
+			path = LoginRegistration;
+			sourceTree = "<group>";
+		};
+		EC2D4985296D946E00C2C121 /* LoginInput */ = {
+			isa = PBXGroup;
+			children = (
+				EC2D4986296D94F500C2C121 /* LoginInputController.swift */,
+				EC2D4988296D950800C2C121 /* LoginInputView.swift */,
+			);
+			path = LoginInput;
+			sourceTree = "<group>";
+		};
 		ECC494D9296B613900571028 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +130,8 @@
 		ECC494DC296B615C00571028 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				008C9555296B416D00730E7A /* LoginViewController.swift */,
-				ECC494E1296B65CB00571028 /* LoginView.swift */,
+				EC2D4985296D946E00C2C121 /* LoginInput */,
+				EC2D4984296D941800C2C121 /* LoginRegistration */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -140,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				ECC3B61B296C210300E7702B /* Extensions+TextField.swift */,
+				ECD2CD89296C4A37008F9542 /* Extensions+Label.swift */,
+				ECD2CD8D296C5487008F9542 /* Extensions+UIStackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -256,14 +284,18 @@
 			files = (
 				008C9556296B416D00730E7A /* LoginViewController.swift in Sources */,
 				ECC494F0296B6A9200571028 /* PlayViewController.swift in Sources */,
+				EC2D4989296D950800C2C121 /* LoginInputView.swift in Sources */,
 				ECC3B61C296C210300E7702B /* Extensions+TextField.swift in Sources */,
 				008C9552296B416D00730E7A /* AppDelegate.swift in Sources */,
+				EC2D4987296D94F500C2C121 /* LoginInputController.swift in Sources */,
 				ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */,
 				ECC494EB296B67F600571028 /* APICaller.swift in Sources */,
 				ECC494F3296B6DC800571028 /* PersonViewController.swift in Sources */,
 				ECC494E4296B660100571028 /* MainViewController.swift in Sources */,
+				ECD2CD8A296C4A37008F9542 /* Extensions+Label.swift in Sources */,
 				ECC494E2296B65CB00571028 /* LoginView.swift in Sources */,
 				008C9554296B416D00730E7A /* SceneDelegate.swift in Sources */,
+				ECD2CD8E296C5487008F9542 /* Extensions+UIStackView.swift in Sources */,
 				ECC494ED296B681C00571028 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
