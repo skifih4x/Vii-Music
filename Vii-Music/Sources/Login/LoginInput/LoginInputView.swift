@@ -65,18 +65,19 @@ final class LoginInputView: UIView {
 
     private lazy var rememberMeLabel = UILabel(text: "Remember me", size: 14, textColor: .white)
 
-    private let emailTextField: UITextField = {
+    let emailTextField: UITextField = {
         let textField = UITextField()
         textField.addTextFieldSetup()
         textField.setLeftPaddingPoints(10)
         return textField
     }()
 
-    private let passwordTextField: UITextField = {
+    let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.addTextFieldSetup()
         textField.setLeftPaddingPoints(10)
         textField.isSecureTextEntry = true
+        textField.enablePasswordToggle()
         return textField
     }()
 
@@ -129,7 +130,7 @@ final class LoginInputView: UIView {
 
     //MARK: - Setup
 
-    func setupHierarchy() {
+    private func setupHierarchy() {
         addSubview(logoImage)
         addSubview(logoNote)
         addSubview(viiMusicLabel)
@@ -149,14 +150,14 @@ final class LoginInputView: UIView {
         addSubview(forgotPasswordButton)
     }
 
-    func setupLayout() {
+    private func setupLayout() {
         NSLayoutConstraint.activate([
             logoImage.topAnchor.constraint(equalTo: topAnchor),
             logoImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             logoImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             logoImage.trailingAnchor.constraint(equalTo: trailingAnchor),
 
-            logoNote.topAnchor.constraint(equalTo: topAnchor, constant: 140),
+            logoNote.topAnchor.constraint(equalTo: topAnchor, constant: 100),
             logoNote.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             viiMusicLabel.topAnchor.constraint(equalTo: logoNote.bottomAnchor, constant: 20),
