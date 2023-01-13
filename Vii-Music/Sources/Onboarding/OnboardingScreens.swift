@@ -32,7 +32,6 @@ class OnboardingScreens: UIView {
     private let pageImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "OnboardingImage01")
-        //        image.layer.cornerRadius = image.bounds.height / 2
         image.layer.cornerRadius = 103.5
         image.layer.borderWidth = 1
         image.layer.masksToBounds = false
@@ -71,8 +70,7 @@ class OnboardingScreens: UIView {
         addSubview(doneButton)
         addSubview(skipButton)
         setConstraints()
-        
-        print(pageImage.frame.size.height)
+        buttonsTapped()
     }
     
     required init?(coder: NSCoder) {
@@ -96,27 +94,54 @@ class OnboardingScreens: UIView {
         pageSubLabel.textColor = Theme.brightGreen
     }
     
+    public func hideDoneButton() {
+        doneButton.isHidden = true
+    }
+    
+    public func hideSkipButton() {
+        skipButton.isHidden = true
+    }
+    
+    func buttonsTapped() {
+        skipButton.addTarget(self, action: #selector(skipButtonTapped(_:)), for: .primaryActionTriggered)
+        doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .primaryActionTriggered)
+    }
+    
+    @objc func skipButtonTapped(_ sender: UIButton) {
+        sender.showAnimation {
+            print("skipskip")
+            //go straight to login screen
+        }
+    }
+    
+    @objc func doneButtonTapped(_ sender: UIButton) {
+        sender.showAnimation {
+            print("donedone")
+            //go straight to login screen
+        }
+    }
+    
     private func setConstraints() {
         NSLayoutConstraint.activate([
             pageImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            pageImage.bottomAnchor.constraint(equalTo: pageLabel.topAnchor, constant: -Theme.spacing),
+            pageImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
             
             pageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Theme.spacing),
             pageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Theme.spacing),
-            pageLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            pageLabel.topAnchor.constraint(equalTo: pageImage.bottomAnchor, constant: 40),
             pageLabel.heightAnchor.constraint(equalToConstant: 100),
             
             pageSubLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Theme.spacing),
             pageSubLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Theme.spacing),
-            pageSubLabel.topAnchor.constraint(equalTo: pageLabel.bottomAnchor, constant: Theme.spacing),
-            pageSubLabel.heightAnchor.constraint(equalToConstant: 75),
+            pageSubLabel.topAnchor.constraint(equalTo: pageLabel.bottomAnchor, constant: 20),
+            pageSubLabel.heightAnchor.constraint(equalToConstant: 100),
             
-            doneButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            doneButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             doneButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Theme.spacing),
             doneButton.widthAnchor.constraint(equalToConstant: 100),
             doneButton.heightAnchor.constraint(equalToConstant: 30),
             
-            skipButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            skipButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             skipButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Theme.spacing),
             skipButton.widthAnchor.constraint(equalToConstant: 100),
             skipButton.heightAnchor.constraint(equalToConstant: 30),
@@ -124,4 +149,26 @@ class OnboardingScreens: UIView {
         ])
     }
     
+}
+
+ extension UIView {
+    func showAnimation(_ completionBlock: @escaping () -> Void) {
+      isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.1,
+                       delay: 0,
+                       options: .curveLinear,
+                       animations: { [weak self] in
+                            self?.transform = CGAffineTransform.init(scaleX: 0.95, y: 0.95)
+        }) {  (done) in
+            UIView.animate(withDuration: 0.1,
+                           delay: 0,
+                           options: .curveLinear,
+                           animations: { [weak self] in
+                                self?.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            }) { [weak self] (_) in
+                self?.isUserInteractionEnabled = true
+                completionBlock()
+            }
+        }
+    }
 }

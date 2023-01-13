@@ -20,7 +20,7 @@ class OnboardingViewController: UIViewController {
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "OnboardingBack01")
+        imageView.image = UIImage(named: "OnboardingBack")
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -67,17 +67,21 @@ class OnboardingViewController: UIViewController {
         firstOnboardingScreen.setPageLabelText(text: "Welcome to the world of Music")
         firstOnboardingScreen.setPageSubLabelText(text: "Millions of tracks to perfectly fit your mood")
         firstOnboardingScreen.setPageImage(image: UIImage(named: "OnboardingImage01")!)
+        firstOnboardingScreen.hideDoneButton()
+        
         
         let secondOnboardingScreen = OnboardingScreens()
         secondOnboardingScreen.setPageLabelText(text: "Search and listen to the millions of artists")
         secondOnboardingScreen.setPageSubLabelText(text: "Music of any style, genre and tempo, so you'll find exactly what you want to listen")
         secondOnboardingScreen.setPageImage(image: UIImage(named: "OnboardingImage02")!)
+        secondOnboardingScreen.hideDoneButton()
         secondOnboardingScreen.setLabelColor()
         
         let thirdOnboardingScreen = OnboardingScreens()
         thirdOnboardingScreen.setPageLabelText(text: "Your favourite music is always with you")
         thirdOnboardingScreen.setPageSubLabelText(text: "Save your favourite music to your device and you'll never be alone as your music will always be with you")
         thirdOnboardingScreen.setPageImage(image: UIImage(named: "OnboardingImage03")!)
+        thirdOnboardingScreen.hideSkipButton()
         thirdOnboardingScreen.setLabelColor()
         
         return [firstOnboardingScreen, secondOnboardingScreen, thirdOnboardingScreen]
@@ -97,13 +101,14 @@ class OnboardingViewController: UIViewController {
     }
 }
 //MARK: - UIScrollViewDelegate
-extension OnboardingViewController: UIScrollViewDelegate {
+extension OnboardingViewController: UIScrollViewDelegate, UIPageViewControllerDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x / view.frame.width)
         pageControl.currentPage = Int(pageIndex)
     }
 }
+
 //MARK: - Set Constraints
 extension OnboardingViewController {
     private func setConstrints() {
@@ -123,25 +128,5 @@ extension OnboardingViewController {
             pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Theme.spacing),
             pageControl.heightAnchor.constraint(equalToConstant: 30)
         ])
-    }
-}
-
-import SwiftUI
-struct ListProvider: PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-    }
-    
-    struct ContainterView: UIViewControllerRepresentable {
-        let listVC = OnboardingViewController()
-        func makeUIViewController(context:
-                                  UIViewControllerRepresentableContext<ListProvider.ContainterView>) -> OnboardingViewController {
-            return listVC
-        }
-        
-        func updateUIViewController(_ uiViewController:
-                                    ListProvider.ContainterView.UIViewControllerType, context:
-                                    UIViewControllerRepresentableContext<ListProvider.ContainterView>) {
-        }
     }
 }
