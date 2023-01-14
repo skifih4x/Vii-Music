@@ -12,6 +12,7 @@
 		008C9556296B416D00730E7A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C9555296B416D00730E7A /* LoginViewController.swift */; };
 		008C955B296B416F00730E7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008C955A296B416F00730E7A /* Assets.xcassets */; };
 		008C955E296B416F00730E7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008C955C296B416F00730E7A /* LaunchScreen.storyboard */; };
+		9EEC9FDB29703983007B22E7 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEC9FDA29703983007B22E7 /* FavoritesCell.swift */; };
 		ECC3B61C296C210300E7702B /* Extensions+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3B61B296C210300E7702B /* Extensions+TextField.swift */; };
 		ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494DE296B645200571028 /* MainTabBarController.swift */; };
 		ECC494E2296B65CB00571028 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494E1296B65CB00571028 /* LoginView.swift */; };
@@ -30,6 +31,7 @@
 		008C955A296B416F00730E7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		008C955D296B416F00730E7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		008C955F296B416F00730E7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EEC9FDA29703983007B22E7 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		ECC3B61B296C210300E7702B /* Extensions+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+TextField.swift"; sourceTree = "<group>"; };
 		ECC494DE296B645200571028 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		ECC494E1296B65CB00571028 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -75,9 +77,19 @@
 				ECC494E9296B679C00571028 /* Models */,
 				ECC494E5296B664C00571028 /* Common */,
 				ECC494DB296B614D00571028 /* Sources */,
+				9EA74926297330E9006F56DB /* FavoritesView */,
 				ECC494DD296B617600571028 /* Resources */,
 			);
 			path = "Vii-Music";
+			sourceTree = "<group>";
+		};
+		9EA74926297330E9006F56DB /* FavoritesView */ = {
+			isa = PBXGroup;
+			children = (
+				ECC494F2296B6DC800571028 /* FavoriteViewController.swift */,
+				9EEC9FDA29703983007B22E7 /* FavoritesCell.swift */,
+			);
+			path = FavoritesView;
 			sourceTree = "<group>";
 		};
 		ECC494D9296B613900571028 /* App */ = {
@@ -179,7 +191,6 @@
 		ECC494F1296B6DB900571028 /* Person */ = {
 			isa = PBXGroup;
 			children = (
-				ECC494F2296B6DC800571028 /* FavoriteViewController.swift */,
 			);
 			path = Person;
 			sourceTree = "<group>";
@@ -259,6 +270,7 @@
 				ECC3B61C296C210300E7702B /* Extensions+TextField.swift in Sources */,
 				008C9552296B416D00730E7A /* AppDelegate.swift in Sources */,
 				ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */,
+				9EEC9FDB29703983007B22E7 /* FavoritesCell.swift in Sources */,
 				ECC494EB296B67F600571028 /* APICaller.swift in Sources */,
 				ECC494F3296B6DC800571028 /* FavoriteViewController.swift in Sources */,
 				ECC494E4296B660100571028 /* MainViewController.swift in Sources */,
