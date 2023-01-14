@@ -52,7 +52,7 @@ final class MainViewController: UIViewController {
         return searchBar
     }()
     
-    let segmentedCOntrolItems = ["Recommendation", "Trending", "Rock", "Pop"]
+    let segmentedCOntrolItems = ["For you", "Trending", "Rock music", "Classic"]
     let haptic = UISelectionFeedbackGenerator()
     
     lazy var segmentedControl: UISegmentedControl = {
@@ -153,7 +153,7 @@ final class MainViewController: UIViewController {
             let trailingGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3),
                                                   heightDimension: .fractionalHeight(1.0)),
-                subitem: trailingItem, count: 3)
+                subitem: trailingItem, count: 2)
 
            
             let containerGroup = NSCollectionLayoutGroup.horizontal(
@@ -176,13 +176,13 @@ extension MainViewController {
         
         let cellRegistration = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in
             // Populate the cell with our item description.
-            cell.label.text = "\(indexPath.section), \(indexPath.item)"
+            cell.label.text = "Artist \(indexPath.item)"
             cell.contentView.backgroundColor = Theme.brightGreen
             cell.contentView.layer.borderColor = UIColor.black.cgColor
             cell.contentView.layer.borderWidth = 1
             cell.contentView.layer.cornerRadius = 8
             cell.label.textAlignment = .center
-            cell.label.font = UIFont.preferredFont(forTextStyle: .title1)
+            cell.label.font = .systemFont(ofSize: 15)
         }
         
         dataSource = UICollectionViewDiffableDataSource<Int, Int>(collectionView: collectionView) {
