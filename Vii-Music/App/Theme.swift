@@ -13,6 +13,8 @@ enum Theme {
     static let bgColor: UIColor = UIColor(named: "BackgroundColor")!
     static let brightGreen: UIColor = UIColor(named: "BrightGreenColor")!
     static let white: UIColor = UIColor(named: "WhiteColor")!
+    static let TabBarColor: UIColor = UIColor(named: "TabBarColor")!
+    
     
     
 

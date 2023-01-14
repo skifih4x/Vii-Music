@@ -148,17 +148,20 @@ final class MainViewController: UIViewController {
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                   heightDimension: .fractionalHeight(0.3)))
             trailingItem.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+           
+            
             let trailingGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3),
                                                   heightDimension: .fractionalHeight(1.0)),
-                subitem: trailingItem, count: 2)
+                subitem: trailingItem, count: 3)
 
+           
             let containerGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85),
-                                                  heightDimension: .fractionalHeight(0.4)),
+                                                  heightDimension: .fractionalHeight(0.5)),
                 subitems: [leadingItem, trailingGroup])
             let section = NSCollectionLayoutSection(group: containerGroup)
-            section.orthogonalScrollingBehavior = .continuous
+            section.orthogonalScrollingBehavior = .groupPaging
 
             return section
 
@@ -192,7 +195,7 @@ extension MainViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
         var identifierOffset = 0
         let itemsPerSection = 30
-        for section in 0..<5 {
+        for section in 0..<2 {
             snapshot.appendSections([section])
             let maxIdentifier = identifierOffset + itemsPerSection
             snapshot.appendItems(Array(identifierOffset..<maxIdentifier))
