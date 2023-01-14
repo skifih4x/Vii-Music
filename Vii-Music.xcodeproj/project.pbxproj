@@ -15,6 +15,7 @@
 		3704C6EF296C8F4300FDBCB3 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704C6EE296C8F4300FDBCB3 /* OnboardingViewController.swift */; };
 		3704C6F1296C97BA00FDBCB3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704C6F0296C97BA00FDBCB3 /* Theme.swift */; };
 		3704C6F3296CCCBD00FDBCB3 /* OnboardingScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3704C6F2296CCCBD00FDBCB3 /* OnboardingScreens.swift */; };
+		3707A1A429721E80007879A1 /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707A1A329721E80007879A1 /* TextCell.swift */; };
 		ECC3B61C296C210300E7702B /* Extensions+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3B61B296C210300E7702B /* Extensions+TextField.swift */; };
 		ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494DE296B645200571028 /* MainTabBarController.swift */; };
 		ECC494E2296B65CB00571028 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494E1296B65CB00571028 /* LoginView.swift */; };
@@ -36,6 +37,7 @@
 		3704C6EE296C8F4300FDBCB3 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		3704C6F0296C97BA00FDBCB3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3704C6F2296CCCBD00FDBCB3 /* OnboardingScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreens.swift; sourceTree = "<group>"; };
+		3707A1A329721E80007879A1 /* TextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextCell.swift; path = "../../../../../../ImplementingModernCollectionViews/Modern Collection Views/Compositional Layout/Cells and Supplementary Views/TextCell.swift"; sourceTree = "<group>"; };
 		ECC3B61B296C210300E7702B /* Extensions+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+TextField.swift"; sourceTree = "<group>"; };
 		ECC494DE296B645200571028 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		ECC494E1296B65CB00571028 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		ECC494E0296B659C00571028 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				3707A1A329721E80007879A1 /* TextCell.swift */,
 				ECC494E3296B660100571028 /* MainViewController.swift */,
 			);
 			path = Main;
@@ -281,6 +284,7 @@
 				ECC494EB296B67F600571028 /* APICaller.swift in Sources */,
 				ECC494F3296B6DC800571028 /* PersonViewController.swift in Sources */,
 				3704C6EF296C8F4300FDBCB3 /* OnboardingViewController.swift in Sources */,
+				3707A1A429721E80007879A1 /* TextCell.swift in Sources */,
 				ECC494E4296B660100571028 /* MainViewController.swift in Sources */,
 				ECC494E2296B65CB00571028 /* LoginView.swift in Sources */,
 				008C9554296B416D00730E7A /* SceneDelegate.swift in Sources */,
