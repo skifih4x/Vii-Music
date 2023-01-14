@@ -16,28 +16,25 @@ final class MainTabBarViewController: UITabBarController {
     }
 
     func setupTabBarController() {
+
         tabBar.tintColor = Theme.brightGreen
         tabBar.unselectedItemTintColor = .white
         tabBar.backgroundColor = Theme.TabBarColor
+
     }
 
     func setupTabBarViewControllers() {
-        
-        let loginViewController = UINavigationController(rootViewController: LoginViewController())
-        loginViewController.tabBarItem.image = UIImage(systemName: "apple.logo")
 
-        let mainViewController = UINavigationController(rootViewController: MainViewController())
+        let mainViewController = MainViewController()
         mainViewController.tabBarItem.image = UIImage(systemName: "house")
 
-        let playViewController = UINavigationController(rootViewController: PlayViewController())
+        let playViewController = PlayViewController()
         playViewController.tabBarItem.image = UIImage(systemName: "play")
 
-        let personViewController = UINavigationController(rootViewController: PersonViewController())
-        personViewController.tabBarItem.image = UIImage(systemName: "person.fill")
+        let personViewController = PersonViewController()
+        personViewController.tabBarItem.image = UIImage(systemName: "person")
 
-        let controllers = [loginViewController, mainViewController, playViewController, personViewController]
+        let controllers = [mainViewController, playViewController, personViewController]
         setViewControllers(controllers, animated: true)
     }
-
-
 }
