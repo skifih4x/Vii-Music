@@ -57,25 +57,26 @@ final class LoginView: UIView {
 
     private lazy var passwordLabel = UILabel(text: "Password", size: 14, textColor: .white)
 
-    private let nameTextField: UITextField = {
+    let nameTextField: UITextField = {
         let textField = UITextField()
         textField.addTextFieldSetup()
         textField.setLeftPaddingPoints(10)
         return textField
     }()
 
-    private let emailTextField: UITextField = {
+    let emailTextField: UITextField = {
         let textField = UITextField()
         textField.addTextFieldSetup()
         textField.setLeftPaddingPoints(10)
         return textField
     }()
 
-    private let passwordTextField: UITextField = {
+    lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.addTextFieldSetup()
         textField.setLeftPaddingPoints(10)
         textField.isSecureTextEntry = true
+        textField.enablePasswordToggle()
         return textField
     }()
 
@@ -104,6 +105,18 @@ final class LoginView: UIView {
         return imageView
     }()
 
+    private lazy var haveAccountLabel = UILabel(text: "Already have an account?", size: 16, textColor: .white)
+
+    let loginInputScreenButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .clear
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.setTitle("Sing in", for: .normal)
+        button.setTitleColor(UIColor(named: "lightBlue"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     //MARK: - LifeCycle
     
     init() {
@@ -118,7 +131,7 @@ final class LoginView: UIView {
     
     //MARK: - Setup
 
-    func setupHierarchy() {
+    private func setupHierarchy() {
         addSubview(logoImage)
         addSubview(logoNote)
         addSubview(welcomeLabel)
@@ -135,9 +148,11 @@ final class LoginView: UIView {
         addSubview(separatorRight)
         addSubview(singUpButton)
         addSubview(imageGoogle)
+        addSubview(haveAccountLabel)
+        addSubview(loginInputScreenButton)
     }
 
-    func setupLayout() {
+    private func setupLayout() {
         NSLayoutConstraint.activate([
             logoImage.topAnchor.constraint(equalTo: topAnchor),
             logoImage.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -203,7 +218,15 @@ final class LoginView: UIView {
             imageGoogle.centerXAnchor.constraint(equalTo: singUpButton.centerXAnchor, constant: -105),
             imageGoogle.centerYAnchor.constraint(equalTo: singUpButton.centerYAnchor),
             imageGoogle.heightAnchor.constraint(equalToConstant: 26),
-            imageGoogle.widthAnchor.constraint(equalToConstant: 26)
+            imageGoogle.widthAnchor.constraint(equalToConstant: 26),
+
+            haveAccountLabel.topAnchor.constraint(equalTo: singUpButton.bottomAnchor, constant: 25),
+            haveAccountLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -30),
+
+            loginInputScreenButton.leadingAnchor.constraint(equalTo: haveAccountLabel.trailingAnchor, constant: 6),
+            loginInputScreenButton.topAnchor.constraint(equalTo: singUpButton.bottomAnchor, constant: 25),
+            loginInputScreenButton.heightAnchor.constraint(equalToConstant: 20),
+            loginInputScreenButton.widthAnchor.constraint(equalToConstant: 60)
         ])
     }
 }
