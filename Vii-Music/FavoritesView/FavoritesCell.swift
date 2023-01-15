@@ -39,18 +39,18 @@ class FavoritesCell: UITableViewCell {
         return lableSecond
     }()
     
-    private lazy var button : UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .red
-    
-        return button
+    private lazy var plaiImage : UIImageView = {
+        let plaiImage = UIImage(named: "plaiImage1")
+        let imageView = UIImageView(image: plaiImage)
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .none
-        addSubview(button)
+        addSubview(plaiImage)
 
         addSubview(stacView)
                 stacView.addArrangedSubview(label)
@@ -74,11 +74,11 @@ class FavoritesCell: UITableViewCell {
 //            lableSecond.widthAnchor.constraint(equalToConstant: 100)
 //            ])
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: contentView.topAnchor, constant:.nextButtonBottomAnchor),
-            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            plaiImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant:.nextButtonBottomAnchor),
+            plaiImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
 //            button.leadingAnchor.constraint(equalTo: stacView.trailingAnchor, constant: 10),
-            button.heightAnchor.constraint(equalToConstant: .nextButtonHeightAnchor),
-            button.widthAnchor.constraint(equalToConstant: .nextButtonHeightAnchor)
+            plaiImage.heightAnchor.constraint(equalToConstant: .nextButtonHeightAnchor),
+            plaiImage.widthAnchor.constraint(equalToConstant: .nextButtonHeightAnchor)
         ])
     }
     
