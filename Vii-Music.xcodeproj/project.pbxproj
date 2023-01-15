@@ -36,6 +36,7 @@
 		ECC494F3296B6DC800571028 /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC494F2296B6DC800571028 /* PersonViewController.swift */; };
 		ECD2CD8A296C4A37008F9542 /* Extensions+Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2CD89296C4A37008F9542 /* Extensions+Label.swift */; };
 		ECD2CD8E296C5487008F9542 /* Extensions+UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD2CD8D296C5487008F9542 /* Extensions+UIStackView.swift */; };
+		ECF836222973F90F005C10E4 /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF836212973F90F005C10E4 /* PlayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		ECC494F2296B6DC800571028 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		ECD2CD89296C4A37008F9542 /* Extensions+Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Label.swift"; sourceTree = "<group>"; };
 		ECD2CD8D296C5487008F9542 /* Extensions+UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIStackView.swift"; sourceTree = "<group>"; };
+		ECF836212973F90F005C10E4 /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC494EF296B6A9200571028 /* PlayViewController.swift */,
+				ECF836212973F90F005C10E4 /* PlayView.swift */,
 			);
 			path = Play;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				ECC494E2296B65CB00571028 /* LoginView.swift in Sources */,
 				008C9554296B416D00730E7A /* SceneDelegate.swift in Sources */,
 				EC70BEFE29701CA900A037EA /* AuthHeaderView.swift in Sources */,
+				ECF836222973F90F005C10E4 /* PlayView.swift in Sources */,
 				EC70BEF8296FF61200A037EA /* LoginUserRequest.swift in Sources */,
 				ECD2CD8E296C5487008F9542 /* Extensions+UIStackView.swift in Sources */,
 				ECC494ED296B681C00571028 /* Model.swift in Sources */,
