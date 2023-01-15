@@ -27,7 +27,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         table.delegate = self
         table.dataSource = self
         table.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        table.rowHeight = 100
+        table.rowHeight = 61
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -36,12 +36,9 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-    
-        
         NSLayoutConstraint.activate([
             tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
-        
         tableView.reloadData()
     }
     override func viewDidLayoutSubviews() {

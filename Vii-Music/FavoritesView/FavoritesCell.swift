@@ -51,7 +51,7 @@ class FavoritesCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .none
         addSubview(plaiImage)
-
+        
         addSubview(stacView)
                 stacView.addArrangedSubview(label)
         stacView.addArrangedSubview(lableSecond)
@@ -60,9 +60,15 @@ class FavoritesCell: UITableViewCell {
             stacView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stacView.topAnchor.constraint(equalTo: topAnchor),
             stacView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
 //            lableSecond.topAnchor.constraint(equalTo: label.bottomAnchor)
         ])
-        
+        NSLayoutConstraint.activate([
+            label.widthAnchor.constraint(equalToConstant: 300),
+            label.heightAnchor.constraint(equalToConstant: 30.1),
+            lableSecond.widthAnchor.constraint(equalToConstant: 300),
+            lableSecond.heightAnchor.constraint(equalToConstant: 30.1)
+                   ])
 //        NSLayoutConstraint.activate([
 //            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
 //            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 70),
@@ -93,9 +99,9 @@ class FavoritesCell: UITableViewCell {
 private extension CGFloat {
 
     
-    static let nextButtonBottomAnchor: CGFloat = 20
+    static let nextButtonBottomAnchor: CGFloat = 15.5
     static let nextButtonLeadingAnchor: CGFloat = 4
     static let nextButtonTrailingAnchor: CGFloat = 4
-    static let nextButtonHeightAnchor : CGFloat = 6
+    static let nextButtonHeightAnchor : CGFloat = 28
 
 }
