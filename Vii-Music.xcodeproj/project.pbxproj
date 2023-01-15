@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00492AD62974B0FC00F9E0E6 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00492AD52974B0FC00F9E0E6 /* FavoriteViewController.swift */; };
+		00492AD82974B11500F9E0E6 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00492AD72974B11500F9E0E6 /* FavoritesCell.swift */; };
 		008C9552296B416D00730E7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C9551296B416D00730E7A /* AppDelegate.swift */; };
 		008C9554296B416D00730E7A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C9553296B416D00730E7A /* SceneDelegate.swift */; };
 		008C9556296B416D00730E7A /* LoginRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008C9555296B416D00730E7A /* LoginRegistrationViewController.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00492AD52974B0FC00F9E0E6 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		00492AD72974B11500F9E0E6 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		008C954E296B416D00730E7A /* Vii-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vii-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		008C9551296B416D00730E7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		008C9553296B416D00730E7A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00492AD42974B0DB00F9E0E6 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				00492AD52974B0FC00F9E0E6 /* FavoriteViewController.swift */,
+				00492AD72974B11500F9E0E6 /* FavoritesCell.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
 		008C9545296B416D00730E7A = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +237,7 @@
 				ECC494E7296B66B100571028 /* TabBar */,
 				ECC494DC296B615C00571028 /* Login */,
 				ECC494E0296B659C00571028 /* Main */,
+				00492AD42974B0DB00F9E0E6 /* Favorites */,
 				ECC494EE296B6A7C00571028 /* Play */,
 				ECC494F1296B6DB900571028 /* Person */,
 			);
@@ -421,10 +435,12 @@
 				ECC494E4296B660100571028 /* MainViewController.swift in Sources */,
 				ECD2CD8A296C4A37008F9542 /* Extensions+Label.swift in Sources */,
 				ECC494E2296B65CB00571028 /* LoginView.swift in Sources */,
+				00492AD62974B0FC00F9E0E6 /* FavoriteViewController.swift in Sources */,
 				008C9554296B416D00730E7A /* SceneDelegate.swift in Sources */,
 				EC70BEFE29701CA900A037EA /* AuthHeaderView.swift in Sources */,
 				ECF836222973F90F005C10E4 /* PlayView.swift in Sources */,
 				EC70BEF8296FF61200A037EA /* LoginUserRequest.swift in Sources */,
+				00492AD82974B11500F9E0E6 /* FavoritesCell.swift in Sources */,
 				ECD2CD8E296C5487008F9542 /* Extensions+UIStackView.swift in Sources */,
 				ECC494ED296B681C00571028 /* Model.swift in Sources */,
 				00C6EBF82974460000572C5D /* OnboardingScreens.swift in Sources */,
