@@ -42,10 +42,10 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesCell.indentifier, for: indexPath) as? FavoritesCell else { return UITableViewCell() }
-         cell.configure(model: "Songer Name")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesCell.indentifier, for: indexPath) as? FavoritesCell else { return UITableViewCell() }
+        cell.configure(model: "Songer Name")
         cell.selectionStyle = .none
-         return cell
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

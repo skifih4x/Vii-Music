@@ -23,7 +23,7 @@ class FavoritesCell: UITableViewCell {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.textColor = #colorLiteral(red: 0.1194838211, green: 0.8408789635, blue: 0.9539651275, alpha: 1)
-        lable.text = "cell"
+        lable.text = "Name track"
         lable.adjustsFontSizeToFitWidth = true
         return lable
     }()
@@ -32,7 +32,7 @@ class FavoritesCell: UITableViewCell {
         let lableSecond = UILabel()
         lableSecond.translatesAutoresizingMaskIntoConstraints = false
         lableSecond.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        lableSecond.text = "lableSecond"
+        lableSecond.text = "Artist"
         lableSecond.adjustsFontSizeToFitWidth = true
         return lableSecond
     }()
