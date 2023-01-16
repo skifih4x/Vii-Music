@@ -23,6 +23,7 @@
 		EC1C57072970C067000845FC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C57062970C067000845FC /* User.swift */; };
 		EC2D4987296D94F500C2C121 /* LoginInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2D4986296D94F500C2C121 /* LoginInputController.swift */; };
 		EC2D4989296D950800C2C121 /* LoginInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2D4988296D950800C2C121 /* LoginInputView.swift */; };
+		EC324F952975D3A600988CBA /* MusicModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC324F932975D3A600988CBA /* MusicModel.xcdatamodeld */; };
 		EC70BEF4296FEA5500A037EA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC70BEF3296FEA5500A037EA /* AuthService.swift */; };
 		EC70BEF6296FEC2300A037EA /* RegisterUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC70BEF5296FEC2300A037EA /* RegisterUserRequest.swift */; };
 		EC70BEF8296FF61200A037EA /* LoginUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC70BEF7296FF61200A037EA /* LoginUserRequest.swift */; };
@@ -64,6 +65,7 @@
 		EC1C57062970C067000845FC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EC2D4986296D94F500C2C121 /* LoginInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputController.swift; sourceTree = "<group>"; };
 		EC2D4988296D950800C2C121 /* LoginInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInputView.swift; sourceTree = "<group>"; };
+		EC324F942975D3A600988CBA /* MusicModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MusicModel.xcdatamodel; sourceTree = "<group>"; };
 		EC70BEF3296FEA5500A037EA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		EC70BEF5296FEC2300A037EA /* RegisterUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserRequest.swift; sourceTree = "<group>"; };
 		EC70BEF7296FF61200A037EA /* LoginUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserRequest.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				ECC494E5296B664C00571028 /* Common */,
 				ECC494DB296B614D00571028 /* Sources */,
 				ECC494DD296B617600571028 /* Resources */,
+				EC324F932975D3A600988CBA /* MusicModel.xcdatamodeld */,
 			);
 			path = "Vii-Music";
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				EC1C56FF29706509000845FC /* Validator.swift in Sources */,
 				EC70BEF6296FEC2300A037EA /* RegisterUserRequest.swift in Sources */,
 				ECC3B61C296C210300E7702B /* Extensions+TextField.swift in Sources */,
+				EC324F952975D3A600988CBA /* MusicModel.xcdatamodeld in Sources */,
 				008C9552296B416D00730E7A /* AppDelegate.swift in Sources */,
 				EC2D4987296D94F500C2C121 /* LoginInputController.swift in Sources */,
 				ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */,
@@ -685,6 +689,19 @@
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		EC324F932975D3A600988CBA /* MusicModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EC324F942975D3A600988CBA /* MusicModel.xcdatamodel */,
+			);
+			currentVersion = EC324F942975D3A600988CBA /* MusicModel.xcdatamodel */;
+			path = MusicModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 008C9546296B416D00730E7A /* Project object */;
 }
