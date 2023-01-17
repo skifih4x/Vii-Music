@@ -24,6 +24,7 @@
 		378294D629772501009A5F30 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294D529772501009A5F30 /* Tracks.swift */; };
 		378294D829772545009A5F30 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294D729772545009A5F30 /* TrackModel.swift */; };
 		378294DA29772578009A5F30 /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294D929772578009A5F30 /* MusicManager.swift */; };
+		378294DC2977324E009A5F30 /* MusicURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294DB2977324E009A5F30 /* MusicURL.swift */; };
 		EC1C56FF29706509000845FC /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C56FE29706509000845FC /* Validator.swift */; };
 		EC1C570129709F89000845FC /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C570029709F89000845FC /* AlertManager.swift */; };
 		EC1C57072970C067000845FC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C57062970C067000845FC /* User.swift */; };
@@ -72,6 +73,7 @@
 		378294D529772501009A5F30 /* Tracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
 		378294D729772545009A5F30 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
 		378294D929772578009A5F30 /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
+		378294DB2977324E009A5F30 /* MusicURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicURL.swift; sourceTree = "<group>"; };
 		EC1C56FE29706509000845FC /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		EC1C570029709F89000845FC /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		EC1C57062970C067000845FC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				378294CD297723F1009A5F30 /* NetworkFetch.swift */,
+				378294DB2977324E009A5F30 /* MusicURL.swift */,
 				378294CF2977243C009A5F30 /* DataFetch.swift */,
 			);
 			path = Networking;
@@ -451,6 +454,7 @@
 				378294DA29772578009A5F30 /* MusicManager.swift in Sources */,
 				EC70BEFB29701B8400A037EA /* ForgotViewController.swift in Sources */,
 				ECC494F0296B6A9200571028 /* PlayViewController.swift in Sources */,
+				378294DC2977324E009A5F30 /* MusicURL.swift in Sources */,
 				EC2D4989296D950800C2C121 /* LoginInputView.swift in Sources */,
 				EC1C56FF29706509000845FC /* Validator.swift in Sources */,
 				EC70BEF6296FEC2300A037EA /* RegisterUserRequest.swift in Sources */,
