@@ -8,6 +8,9 @@
 import UIKit
 
 final class MainViewController: UIViewController {
+    
+    let manager = MusicManager()
+    var tracks = [Tracks]()
 
     var dataSource: UICollectionViewDiffableDataSource<Int, Int>! = nil
     var collectionView: UICollectionView! = nil
@@ -75,7 +78,6 @@ final class MainViewController: UIViewController {
         configureDataSource()
 
     }
-
 
     func setupViews() {
         navigationController?.navigationBar.isHidden = true
@@ -169,6 +171,25 @@ final class MainViewController: UIViewController {
         return layout
     }
 }
+
+//MARK: - SongFetching for Searching
+#warning ("метод для фетча трека для таблицы поиска")
+//extension MainViewController {
+//
+//    func fetchSong(songName: String) {
+//        let urlString = "https://itunes.apple.com/search?entity=song&term=\(songName)"
+//        print(urlString)
+//        NetworkFetch.shared.songFetch(urlString: urlString) { [weak self] trackModel, error in
+//            if error == nil {
+//                guard let trackModel = trackModel else {return}
+//                self?.tracks = trackModel.results
+//                self?.tableView.reloadData()
+//            } else {
+//                print(error!.localizedDescription)
+//            }
+//        }
+//    }
+//}
 
 extension MainViewController {
 
