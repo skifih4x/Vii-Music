@@ -42,7 +42,7 @@ class OnboardingScreens: UIView {
         return image
     }()
 
-    private let doneButton: UIButton = {
+    let doneButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
         button.layer.backgroundColor = Theme.brightGreen.cgColor
@@ -51,7 +51,7 @@ class OnboardingScreens: UIView {
         return button
     }()
 
-    private let skipButton: UIButton = {
+    let skipButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
         button.layer.backgroundColor = Theme.brightGreen.cgColor
@@ -70,7 +70,6 @@ class OnboardingScreens: UIView {
         addSubview(doneButton)
         addSubview(skipButton)
         setConstraints()
-        buttonsTapped()
     }
 
     required init?(coder: NSCoder) {
@@ -100,25 +99,6 @@ class OnboardingScreens: UIView {
 
     public func hideSkipButton() {
         skipButton.isHidden = true
-    }
-
-    func buttonsTapped() {
-        skipButton.addTarget(self, action: #selector(skipButtonTapped(_:)), for: .primaryActionTriggered)
-        doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .primaryActionTriggered)
-    }
-
-    @objc func skipButtonTapped(_ sender: UIButton) {
-        sender.showAnimation {
-            print("skipskip")
-            //go straight to login screen
-        }
-    }
-
-    @objc func doneButtonTapped(_ sender: UIButton) {
-        sender.showAnimation {
-            print("donedone")
-            //go straight to login screen
-        }
     }
 
     private func setConstraints() {

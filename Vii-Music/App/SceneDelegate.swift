@@ -11,6 +11,7 @@ import FirebaseAuth
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var onboarding = false
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         setupWindow(with: scene)
@@ -25,10 +26,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     public func checkAuthentication() {
         if Auth.auth().currentUser == nil {
+            onboarding = true
             gotoController(with: LoginViewController())
-        } else {
-            gotoController(with: MainTabBarViewController())
-        }
+        } else if onboarding == true {
+                gotoController(with: OnboardingViewController())
+            } else {
+                gotoController(with: MainTabBarViewController())
+            }
     }
 
     private func gotoController(with viewController: UIViewController) {

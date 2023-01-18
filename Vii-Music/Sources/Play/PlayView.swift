@@ -61,12 +61,15 @@ final class PlayView: UIView {
 
     private lazy var artistLabel = UILabel(text: "Name", size: 14, textColor: .white)
 
-    private lazy var timePassedLabel = UILabel(text: "0:00",size: 11, textColor: .white)
+    lazy var timePassedLabel = UILabel(text: "0:00",size: 11, textColor: .white)
 
-    private lazy var timeLeftLabel = UILabel(text: "0:00", size: 11, textColor: .white)
+    lazy var timeLeftLabel = UILabel(text: "0:00", size: 11, textColor: .white)
 
-    private let slider: UISlider = {
+    let slider: UISlider = {
         let slider = UISlider()
+        slider.minimumTrackTintColor = UIColor(named: "lightBlue")
+        slider.maximumTrackTintColor = .gray
+        slider.thumbTintColor = UIColor(named: "lightBlue")
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()

@@ -9,6 +9,10 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
 
+    private let firstOnboardingScreen = OnboardingScreens()
+    private let secondOnboardingScreen = OnboardingScreens()
+    private let thirdOnboardingScreen = OnboardingScreens()
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -48,6 +52,7 @@ class OnboardingViewController: UIViewController {
         setupViews()
         setConstrints()
         setDelegates()
+        buttonsTapped()
     }
 
     private func setupViews() {
@@ -63,21 +68,17 @@ class OnboardingViewController: UIViewController {
     }
 
     private func createSlides() -> [OnboardingScreens] {
-        let firstOnboardingScreen = OnboardingScreens()
         firstOnboardingScreen.setPageLabelText(text: "Welcome to the world of Music")
         firstOnboardingScreen.setPageSubLabelText(text: "Millions of tracks to perfectly fit your mood")
         firstOnboardingScreen.setPageImage(image: UIImage(named: "OnboardingImage01")!)
         firstOnboardingScreen.hideDoneButton()
 
-
-        let secondOnboardingScreen = OnboardingScreens()
         secondOnboardingScreen.setPageLabelText(text: "Search and listen to the millions of artists")
         secondOnboardingScreen.setPageSubLabelText(text: "Music of any style, genre and tempo, so you'll find exactly what you want to listen")
         secondOnboardingScreen.setPageImage(image: UIImage(named: "OnboardingImage02")!)
         secondOnboardingScreen.hideDoneButton()
         secondOnboardingScreen.setLabelColor()
 
-        let thirdOnboardingScreen = OnboardingScreens()
         thirdOnboardingScreen.setPageLabelText(text: "Your favourite music is always with you")
         thirdOnboardingScreen.setPageSubLabelText(text: "Save your favourite music to your device and you'll never be alone as your music will always be with you")
         thirdOnboardingScreen.setPageImage(image: UIImage(named: "OnboardingImage03")!)
@@ -97,6 +98,32 @@ class OnboardingViewController: UIViewController {
                                      width: view.frame.width,
                                      height: view.frame.height)
             scrollView.addSubview(slides[i])
+        }
+    }
+
+    func buttonsTapped() {
+        firstOnboardingScreen.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+        secondOnboardingScreen.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+        thirdOnboardingScreen.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .primaryActionTriggered)
+    }
+
+    @objc func skipButtonTapped() {
+        secondOnboardingScreen.showAnimation {
+            //go straight to login screen
+            let mainTabBarController = MainTabBarViewController()
+            if let navigator = self.navigationController {
+                navigator.pushViewController(mainTabBarController, animated: true)
+            }
+        }
+    }
+
+    @objc func doneButtonTapped(_ sender: UIButton) {
+        sender.showAnimation {
+            //go straight to login screen
+            let mainTabBarController = MainTabBarViewController()
+            if let navigator = self.navigationController {
+                navigator.pushViewController(mainTabBarController, animated: true)
+            }
         }
     }
 }
