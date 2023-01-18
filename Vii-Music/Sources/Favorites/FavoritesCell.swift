@@ -9,17 +9,13 @@ import UIKit
 
 class FavoritesCell: UITableViewCell {
 
-    static let indentifier = "FavoritesCell"
+    // MARK: - Properties
+    
+    static let identifier = "FavoritesCell"
 
-    private lazy var stacView: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.distribution = .fill
-        return stack
-    }()
-
-    lazy var label: UILabel = {
+    //MARK: - UIElements
+    
+    lazy var trackNameLabel: UILabel = {
         let lable = UILabel()
         lable.translatesAutoresizingMaskIntoConstraints = false
         lable.textColor = #colorLiteral(red: 0.1194838211, green: 0.8408789635, blue: 0.9539651275, alpha: 1)
@@ -28,7 +24,7 @@ class FavoritesCell: UITableViewCell {
         return lable
     }()
 
-    private lazy var lableSecond: UILabel = {
+    private lazy var artistNameLabel: UILabel = {
         let lableSecond = UILabel()
         lableSecond.translatesAutoresizingMaskIntoConstraints = false
         lableSecond.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -45,29 +41,35 @@ class FavoritesCell: UITableViewCell {
         return imageView
     }()
 
+    //MARK: - LifeCycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = Theme.bgColor
+        setupHierarchy()
+        setupLayout()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    //MARK: - Setup
+    
+    func setupHierarchy() {
+        addSubview(trackNameLabel)
+        addSubview(artistNameLabel)
         addSubview(plaiImage)
+    }
 
-        addSubview(stacView)
-                stacView.addArrangedSubview(label)
-        stacView.addArrangedSubview(lableSecond)
-
+    func setupLayout() {
         NSLayoutConstraint.activate([
-            stacView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stacView.topAnchor.constraint(equalTo: topAnchor),
-            stacView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            trackNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            trackNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 7),
 
-        ])
-        NSLayoutConstraint.activate([
-            label.widthAnchor.constraint(equalToConstant: 300),
-            label.heightAnchor.constraint(equalToConstant: 30.1),
-            lableSecond.widthAnchor.constraint(equalToConstant: 300),
-            lableSecond.heightAnchor.constraint(equalToConstant: 30.1)
-                   ])
+            artistNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            artistNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -7),
 
-        NSLayoutConstraint.activate([
             plaiImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant:.nextButtonBottomAnchor),
             plaiImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             plaiImage.heightAnchor.constraint(equalToConstant: .nextButtonHeightAnchor),
@@ -75,14 +77,12 @@ class FavoritesCell: UITableViewCell {
         ])
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     func configure(model: String) {
-        label.text = model
+        trackNameLabel.text = model
+        artistNameLabel.text = model
     }
 }
+
 private extension CGFloat {
     static let nextButtonBottomAnchor: CGFloat = 15.5
     static let nextButtonLeadingAnchor: CGFloat = 4
