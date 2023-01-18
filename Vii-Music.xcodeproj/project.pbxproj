@@ -18,6 +18,13 @@
 		00C6EBF6297445ED00572C5D /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C6EBF5297445ED00572C5D /* OnboardingViewController.swift */; };
 		00C6EBF82974460000572C5D /* OnboardingScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C6EBF72974460000572C5D /* OnboardingScreens.swift */; };
 		00C6EBFA2974464000572C5D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C6EBF92974464000572C5D /* Theme.swift */; };
+		378294CE297723F1009A5F30 /* NetworkFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294CD297723F1009A5F30 /* NetworkFetch.swift */; };
+		378294D02977243C009A5F30 /* DataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294CF2977243C009A5F30 /* DataFetch.swift */; };
+		378294D4297724D8009A5F30 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294D3297724D8009A5F30 /* AlbumModel.swift */; };
+		378294D629772501009A5F30 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294D529772501009A5F30 /* Tracks.swift */; };
+		378294D829772545009A5F30 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294D729772545009A5F30 /* TrackModel.swift */; };
+		378294DA29772578009A5F30 /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294D929772578009A5F30 /* MusicManager.swift */; };
+		378294DC2977324E009A5F30 /* MusicURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378294DB2977324E009A5F30 /* MusicURL.swift */; };
 		EC1C56FF29706509000845FC /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C56FE29706509000845FC /* Validator.swift */; };
 		EC1C570129709F89000845FC /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C570029709F89000845FC /* AlertManager.swift */; };
 		EC1C57072970C067000845FC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C57062970C067000845FC /* User.swift */; };
@@ -65,6 +72,13 @@
 		00C6EBF5297445ED00572C5D /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		00C6EBF72974460000572C5D /* OnboardingScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScreens.swift; sourceTree = "<group>"; };
 		00C6EBF92974464000572C5D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		378294CD297723F1009A5F30 /* NetworkFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFetch.swift; sourceTree = "<group>"; };
+		378294CF2977243C009A5F30 /* DataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetch.swift; sourceTree = "<group>"; };
+		378294D3297724D8009A5F30 /* AlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
+		378294D529772501009A5F30 /* Tracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
+		378294D729772545009A5F30 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		378294D929772578009A5F30 /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
+		378294DB2977324E009A5F30 /* MusicURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicURL.swift; sourceTree = "<group>"; };
 		EC1C56FE29706509000845FC /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		EC1C570029709F89000845FC /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		EC1C57062970C067000845FC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -155,6 +169,16 @@
 				00C6EBF72974460000572C5D /* OnboardingScreens.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		378294CC297723A1009A5F30 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				378294CD297723F1009A5F30 /* NetworkFetch.swift */,
+				378294DB2977324E009A5F30 /* MusicURL.swift */,
+				378294CF2977243C009A5F30 /* DataFetch.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		EC1C57022970B1A4000845FC /* AlertManager */ = {
@@ -334,6 +358,10 @@
 			isa = PBXGroup;
 			children = (
 				ECC494EC296B681C00571028 /* Model.swift */,
+				378294D3297724D8009A5F30 /* AlbumModel.swift */,
+				378294D529772501009A5F30 /* Tracks.swift */,
+				378294D729772545009A5F30 /* TrackModel.swift */,
+				378294D929772578009A5F30 /* MusicManager.swift */,
 				EC1C57082970C547000845FC /* AuthModels */,
 			);
 			path = Models;
@@ -448,8 +476,10 @@
 				ECDC43182976CA4600A804E8 /* InfoAlbumView.swift in Sources */,
 				00C6EBFA2974464000572C5D /* Theme.swift in Sources */,
 				008C9556296B416D00730E7A /* LoginRegistrationViewController.swift in Sources */,
+				378294DA29772578009A5F30 /* MusicManager.swift in Sources */,
 				EC70BEFB29701B8400A037EA /* ForgotViewController.swift in Sources */,
 				ECC494F0296B6A9200571028 /* PlayViewController.swift in Sources */,
+				378294DC2977324E009A5F30 /* MusicURL.swift in Sources */,
 				EC2D4989296D950800C2C121 /* LoginInputView.swift in Sources */,
 				EC1C56FF29706509000845FC /* Validator.swift in Sources */,
 				EC70BEF6296FEC2300A037EA /* RegisterUserRequest.swift in Sources */,
@@ -458,6 +488,7 @@
 				008C9552296B416D00730E7A /* AppDelegate.swift in Sources */,
 				EC2D4987296D94F500C2C121 /* LoginInputController.swift in Sources */,
 				ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */,
+				378294CE297723F1009A5F30 /* NetworkFetch.swift in Sources */,
 				ECC494EB296B67F600571028 /* APICaller.swift in Sources */,
 				ECDC43162976C8E200A804E8 /* InfoAlbumViewController.swift in Sources */,
 				ECC494F3296B6DC800571028 /* PersonViewController.swift in Sources */,
@@ -467,15 +498,18 @@
 				ECDC431029768CC600A804E8 /* DataPersistenceManager.swift in Sources */,
 				ECD2CD8A296C4A37008F9542 /* Extensions+Label.swift in Sources */,
 				ECC494E2296B65CB00571028 /* LoginView.swift in Sources */,
+				378294D4297724D8009A5F30 /* AlbumModel.swift in Sources */,
 				00492AD62974B0FC00F9E0E6 /* FavoriteViewController.swift in Sources */,
 				008C9554296B416D00730E7A /* SceneDelegate.swift in Sources */,
 				EC70BEFE29701CA900A037EA /* AuthHeaderView.swift in Sources */,
+				378294D829772545009A5F30 /* TrackModel.swift in Sources */,
 				ECF836222973F90F005C10E4 /* PlayView.swift in Sources */,
 				EC70BEF8296FF61200A037EA /* LoginUserRequest.swift in Sources */,
 				00492AD82974B11500F9E0E6 /* FavoritesCell.swift in Sources */,
 				ECD2CD8E296C5487008F9542 /* Extensions+UIStackView.swift in Sources */,
 				ECC494ED296B681C00571028 /* Model.swift in Sources */,
 				00C6EBF82974460000572C5D /* OnboardingScreens.swift in Sources */,
+				378294D02977243C009A5F30 /* DataFetch.swift in Sources */,
 				EC70BEF4296FEA5500A037EA /* AuthService.swift in Sources */,
 				00C6EBF32974458400572C5D /* TextCell.swift in Sources */,
 				EC1C57072970C067000845FC /* User.swift in Sources */,
