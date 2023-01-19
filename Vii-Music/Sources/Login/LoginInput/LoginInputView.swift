@@ -14,7 +14,7 @@ final class LoginInputView: UIView {
     let singInButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "lightBlue")
-        button.setTitle("Sing in", for: .normal)
+        button.setTitle("Sing up", for: .normal)
         button.tintColor = .white
         button.layer.cornerRadius = 6
         button.translatesAutoresizingMaskIntoConstraints = false
