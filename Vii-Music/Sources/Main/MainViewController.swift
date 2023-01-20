@@ -11,6 +11,7 @@ import UIKit
     
     let manager = MusicManager()
     var tracks = [Tracks]()
+     var timer: Timer?
 
     private let collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewLayout()
@@ -185,22 +186,22 @@ import UIKit
 
 //MARK: - SongFetching for Searching
 #warning ("метод для фетча трека для таблицы поиска")
-//extension MainViewController {
-//
-//    func fetchSong(songName: String) {
-//        let urlString = "https://itunes.apple.com/search?entity=song&term=\(songName)"
-//        print(urlString)
-//        NetworkFetch.shared.songFetch(urlString: urlString) { [weak self] trackModel, error in
-//            if error == nil {
-//                guard let trackModel = trackModel else {return}
-//                self?.tracks = trackModel.results
-//                self?.tableView.reloadData()
-//            } else {
-//                print(error!.localizedDescription)
-//            }
-//        }
-//    }
-//}
+extension MainViewController {
+
+    func fetchSong(songName: String) {
+        let urlString = "https://itunes.apple.com/search?entity=song&term=\(songName)"
+        print(urlString)
+        NetworkFetch.shared.songFetch(urlString: urlString) { [weak self] trackModel, error in
+            if error == nil {
+                guard let trackModel = trackModel else {return}
+                self?.tracks = trackModel.results
+                self?.tableView.reloadData()
+            } else {
+                print(error!.localizedDescription)
+            }
+        }
+    }
+}
 
 extension MainViewController {
     
@@ -373,23 +374,46 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        20
+        tracks.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else { return UITableViewCell() }
+        let track = tracks[indexPath.row]
+        cell.configure(model: track)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        70
+    }
 
 }
 
 // MARK: - SearchDelegate
 
 extension MainViewController: UISearchBarDelegate {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        searchBar.placeholder = "Search track"
+
+        let text = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+
+        if text != ""  {
+            timer?.invalidate()
+            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+                self?.fetchSong(songName: text ?? "james")
+            })
+        } else if searchBar.text?.count == 0 {
+            tracks = []
+             tableView.reloadData()
+        }
+    }
+
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         tableView.isHidden = false
         searchBar.setShowsCancelButton(true, animated: true)

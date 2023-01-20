@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class SearchCell: UITableViewCell {
     // MARK: - Properties
@@ -33,8 +34,7 @@ final class SearchCell: UITableViewCell {
     }()
     
     private lazy var trackImage : UIImageView = {
-        let trackImage = UIImage(named: "plaiImage1")
-        let imageView = UIImageView(image: trackImage)
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -63,22 +63,28 @@ final class SearchCell: UITableViewCell {
 
     func setupLayout() {
         NSLayoutConstraint.activate([
-            trackNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60),
-            trackNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 3.5),
-
-            artistNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 60),
-            artistNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3.5),
 
             trackImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant:.nextButtonBottomAnchor),
-            trackImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            trackImage.heightAnchor.constraint(equalToConstant: .nextButtonHeightAnchor),
-            trackImage.widthAnchor.constraint(equalToConstant: .nextButtonHeightAnchor)
+            trackImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            trackImage.heightAnchor.constraint(equalToConstant: 50),
+            trackImage.widthAnchor.constraint(equalToConstant: 50),
+
+            trackNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            trackNameLabel.leadingAnchor.constraint(equalTo: trackImage.trailingAnchor, constant: 10),
+
+
+            artistNameLabel.leadingAnchor.constraint(equalTo: trackImage.trailingAnchor, constant: 10),
+            artistNameLabel.topAnchor.constraint(equalTo: trackNameLabel.bottomAnchor, constant: 3.5)
+
         ])
     }
 
-    func configure(model: String) {
-        trackNameLabel.text = model
-        artistNameLabel.text = model
+    func configure(model: Tracks) {
+        trackNameLabel.text = model.trackName
+        artistNameLabel.text = model.artistName
+        guard let url = URL(string: model.artworkUrl100 ?? "") else { return }
+        trackImage.kf.setImage(with: url)
+
     }
 }
 
@@ -89,4 +95,25 @@ private extension CGFloat {
     static let nextButtonHeightAnchor : CGFloat = 28
 }
 
+import SwiftUI
+
+struct PeopleVCProvider: PreviewProvider {
+    static var previews: some View {
+        Container().edgesIgnoringSafeArea(.all)
+            .previewDevice("iPhone 13 Pro Max")
+    }
+
+    struct Container: UIViewControllerRepresentable {
+
+        let tabBarVC = MainTabBarViewController()
+
+        func makeUIViewController(context: Context) -> some UIViewController {
+            tabBarVC
+        }
+
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+
+        }
+    }
+}
 
