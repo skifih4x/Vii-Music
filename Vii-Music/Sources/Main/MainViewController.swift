@@ -74,7 +74,8 @@ import UIKit
          table.translatesAutoresizingMaskIntoConstraints = false
          table.delegate = self
          table.dataSource = self
-         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//         table.backgroundColor = .red
+         table.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
          return table
      }()
 
@@ -374,8 +375,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+         let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath)
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
     }
 
 
