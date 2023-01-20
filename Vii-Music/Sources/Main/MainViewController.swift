@@ -56,15 +56,27 @@ import UIKit
         return stack
     }()
 
-    let searchBar: UISearchBar = {
+     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchTextField.layer.cornerRadius = 10
         searchBar.layer.cornerRadius = 10
         searchBar.layer.masksToBounds = true
         searchBar.searchTextField.layer.masksToBounds = true
+         searchBar.delegate = self
+         searchBar.showsCancelButton = true
+         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
+
+     lazy var tableView: UITableView = {
+         let table = UITableView()
+         table.translatesAutoresizingMaskIntoConstraints = false
+         table.delegate = self
+         table.dataSource = self
+         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+         return table
+     }()
 
     let segmentedCOntrolItems = ["For you", "Trending", "Rock music", "Classic"]
     let haptic = UISelectionFeedbackGenerator()
@@ -86,22 +98,22 @@ import UIKit
         setConstraints()
         haptic.prepare()
         setDelegates()
-
+        tableView.isHidden = true
     }
     func setupViews() {
-//        navigationController?.navigationBar.isHidden = true
-//        navigationController?.isNavigationBarHidden = true
         
         view.backgroundColor = Theme.bgColor
+
         view.addSubview(headerStackView)
         view.addSubview(searchBar)
-        
+
         headerStackView.addArrangedSubview(headerLabel)
         headerStackView.addArrangedSubview(headerSubLabel)
         
         view.addSubview(segmentedControl)
         
         view.addSubview(collectionView)
+        view.addSubview(tableView)
         collectionView.register(FirstSectionCell.self, forCellWithReuseIdentifier: "FirstSectionCell")
         collectionView.register(SecondSectionCell.self, forCellWithReuseIdentifier: "SecondSectionCell")
         collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSupplementaryView")
@@ -135,6 +147,7 @@ import UIKit
 
     func setConstraints() {
         NSLayoutConstraint.activate([
+
             headerStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             headerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -144,6 +157,11 @@ import UIKit
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             //            searchBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -500),
             searchBar.heightAnchor.constraint(equalToConstant: 40),
+
+            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             segmentedControl.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
             segmentedControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -347,6 +365,42 @@ extension MainViewController: UICollectionViewDataSource {
         }
     }
 }
+
+// MARK: - TableView DataSource&Delegate
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        20
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        return cell
+    }
+
+
+}
+
+// MARK: - SearchDelegate
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        tableView.isHidden = false
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        tableView.isHidden =  true
+//        self.searchBar.resignFirstResponder()
+//        self.searchBar.endEditing(true)
+        searchBar.setShowsCancelButton(false, animated: true)
+
+        // Remove focus from the search bar.
+        searchBar.endEditing(true)
+    }
+}
+
+
 
 
 import SwiftUI

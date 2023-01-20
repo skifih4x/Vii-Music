@@ -209,18 +209,11 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		00CE6AA6297AB2D000F59E4F /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				00CE6AA7297AB2D000F59E4F /* SearchCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		378294DD2979C5F5009A5F30 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				378294DE2979C61F009A5F30 /* FirstSectionCell.swift */,
+				00CE6AA7297AB2D000F59E4F /* SearchCell.swift */,
 				378294E22979C93A009A5F30 /* SecondSectionCell.swift */,
 				378294E02979C644009A5F30 /* HeaderSupplementaryView.swift */,
 			);
@@ -363,7 +356,6 @@
 		ECC494E0296B659C00571028 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				00CE6AA6297AB2D000F59E4F /* Cell */,
 				378294DD2979C5F5009A5F30 /* Cells */,
 				ECC494E3296B660100571028 /* MainViewController.swift */,
 				ECDC43152976C8E200A804E8 /* InfoAlbumViewController.swift */,
