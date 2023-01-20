@@ -7,13 +7,24 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
+ class MainViewController: UIViewController {
     
     let manager = MusicManager()
     var tracks = [Tracks]()
 
-    var dataSource: UICollectionViewDiffableDataSource<Int, Int>! = nil
-    var collectionView: UICollectionView! = nil
+    private let collectionView: UICollectionView = {
+        let collectionViewLayout = UICollectionViewLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        collectionView.backgroundColor = Theme.bgColor
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
+    private var sections = MockData.shared.pageData
+    private var firstSection: [ListItem]?
+    private var secondSection: [ListItem]?
+    
+    
 
     let headerLabel: UILabel = {
         let label = UILabel()
@@ -74,28 +85,39 @@ final class MainViewController: UIViewController {
         setupViews()
         setConstraints()
         haptic.prepare()
-
-        configureDataSource()
+        setDelegates()
 
     }
-
     func setupViews() {
-        navigationController?.navigationBar.isHidden = true
+//        navigationController?.navigationBar.isHidden = true
+//        navigationController?.isNavigationBarHidden = true
+        
         view.backgroundColor = Theme.bgColor
         view.addSubview(headerStackView)
         view.addSubview(searchBar)
+        
         headerStackView.addArrangedSubview(headerLabel)
         headerStackView.addArrangedSubview(headerSubLabel)
+        
         view.addSubview(segmentedControl)
-
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .none
+        
         view.addSubview(collectionView)
-        collectionView.delegate = self
+        collectionView.register(FirstSectionCell.self, forCellWithReuseIdentifier: "FirstSectionCell")
+        collectionView.register(SecondSectionCell.self, forCellWithReuseIdentifier: "SecondSectionCell")
+        collectionView.register(HeaderSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderSupplementaryView")
+        collectionView.collectionViewLayout = createLayout()
     }
+     
+     override func viewWillAppear(_ animated: Bool) {
+         super.viewWillAppear(animated)
+//         navigationController?.navigationBar.isHidden = true
+         navigationController?.isNavigationBarHidden = true
+     }
 
+    private func setDelegates() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
 
     @objc func indexChanged() {
         haptic.selectionChanged()
@@ -137,39 +159,7 @@ final class MainViewController: UIViewController {
         ])
     }
 
-    func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout {
-            (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
 
-            let leadingItem = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7),
-                                                  heightDimension: .fractionalHeight(1.0)))
-            leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-
-            let trailingItem = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                  heightDimension: .fractionalHeight(0.3)))
-            trailingItem.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-
-
-            let trailingGroup = NSCollectionLayoutGroup.vertical(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3),
-                                                  heightDimension: .fractionalHeight(1.0)),
-                subitem: trailingItem, count: 2)
-
-
-            let containerGroup = NSCollectionLayoutGroup.horizontal(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85),
-                                                  heightDimension: .fractionalHeight(0.5)),
-                subitems: [leadingItem, trailingGroup])
-            let section = NSCollectionLayoutSection(group: containerGroup)
-            section.orthogonalScrollingBehavior = .groupPaging
-
-            return section
-
-        }
-        return layout
-    }
 }
 
 //MARK: - SongFetching for Searching
@@ -192,43 +182,169 @@ final class MainViewController: UIViewController {
 //}
 
 extension MainViewController {
-
-    func configureDataSource() {
-
-        let cellRegistration = UICollectionView.CellRegistration<TextCell, Int> { (cell, indexPath, identifier) in
-            // Populate the cell with our item description.
-            cell.label.text = "Artist \(indexPath.item)"
-            cell.contentView.backgroundColor = Theme.brightGreen
-            cell.contentView.layer.borderColor = UIColor.black.cgColor
-            cell.contentView.layer.borderWidth = 1
-            cell.contentView.layer.cornerRadius = 8
-            cell.label.textAlignment = .center
-            cell.label.font = .systemFont(ofSize: 15)
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        
+        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            guard let self = self else { return nil }
+            
+            let section = self.sections[sectionIndex]
+            switch section {
+            case .first(_):
+                return self.createFirstSection()
+            case .second(_):
+                return self.createSecondSection()
+            }
         }
-
-        dataSource = UICollectionViewDiffableDataSource<Int, Int>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, identifier: Int) -> UICollectionViewCell? in
-            // Return the cell.
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
-        }
-
-        // initial data
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
-        var identifierOffset = 0
-        let itemsPerSection = 30
-        for section in 0..<2 {
-            snapshot.appendSections([section])
-            let maxIdentifier = identifierOffset + itemsPerSection
-            snapshot.appendItems(Array(identifierOffset..<maxIdentifier))
-            identifierOffset += itemsPerSection
-        }
-        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    private func createLayoutSection(
+        group: NSCollectionLayoutGroup,
+        behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior,
+        intergrouupSpacing: CGFloat,
+        supplementaryItems: [NSCollectionLayoutBoundarySupplementaryItem],
+        contentInsets: Bool
+    ) -> NSCollectionLayoutSection {
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = behavior
+        section.interGroupSpacing = intergrouupSpacing
+        section.boundarySupplementaryItems = supplementaryItems
+        section.supplementariesFollowContentInsets = contentInsets
+        return section
+    }
+    
+    
+    private func createFirstSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalWidth(1)
+            )
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(0.47),
+                heightDimension: .fractionalWidth(0.5)
+            ),
+            subitems: [item]
+        )
+        
+        let section = createLayoutSection(
+            group: group,
+            behavior: .groupPaging,
+            intergrouupSpacing: 10,
+            supplementaryItems: [supplementaryHeaderItem()],
+            contentInsets: false
+        )
+        section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
+        return section
+    }
+    
+    private func createSecondSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalHeight(50)
+            )
+        )
+        item.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(1)
+            ),
+            subitems: [item]
+        )
+        
+        let section = createLayoutSection(
+            group: group,
+            behavior: .none,
+            intergrouupSpacing: 10,
+            supplementaryItems: [supplementaryHeaderItem()],
+            contentInsets: false
+        )
+        section.contentInsets = .init(top: 10, leading: 0, bottom: 0, trailing: 0)
+        return section
+    }
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        .init(
+            layoutSize: .init(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .estimated(40)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
     }
 }
+    
 
-extension MainViewController: UICollectionViewDelegate {
+//extension MainViewController: UICollectionViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        collectionView.deselectItem(at: indexPath, animated: true)
+//    }
+
+//MARK: - UICollectionViewDelegate
+extension MainViewController: UICollectionViewDelegate { }
+
+//MARK: - UICollectionViewDataSource
+extension MainViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        sections[section].count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch sections[indexPath.section] {
+            
+        case .first(let first):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FirstSectionCell", for: indexPath) as? FirstSectionCell
+            else {
+                return UICollectionViewCell()
+            }
+            cell.configureCell(albumName: first[indexPath.row].title, image: first[indexPath.row].image)
+            return cell
+            
+            
+        case .second(let second):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SecondSectionCell", for: indexPath) as? SecondSectionCell
+            else {
+                return UICollectionViewCell()
+            }
+            cell.configureCell(albumName: second[indexPath.row].title, image: second[indexPath.row].image, button: second[indexPath.row].button!)
+            return cell
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        print(sections[indexPath.section].items[indexPath.row].id!)
+        
+//        let vc =
+//        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: "HeaderSupplementaryView",
+                for: indexPath
+            ) as! HeaderSupplementaryView
+            header.configureHeader(categoryName: sections[indexPath.section].title)
+            return header
+        default:
+            return UICollectionReusableView()
+        }
     }
 }
 
