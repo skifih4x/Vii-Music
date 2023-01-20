@@ -16,6 +16,7 @@ import UIKit
         let collectionViewLayout = UICollectionViewLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionView.backgroundColor = Theme.bgColor
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -74,7 +75,8 @@ import UIKit
          table.translatesAutoresizingMaskIntoConstraints = false
          table.delegate = self
          table.dataSource = self
-//         table.backgroundColor = .red
+         table.backgroundColor = Theme.bgColor
+         table.showsVerticalScrollIndicator = false
          table.register(SearchCell.self, forCellReuseIdentifier: SearchCell.identifier)
          return table
      }()
