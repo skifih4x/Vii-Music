@@ -31,6 +31,7 @@ final class DataPersistenceManager {
         let request: NSFetchRequest<TitleItem>
         request = TitleItem.fetchRequest()
 
+        
         do {
             let titles = try context.fetch(request)
             completion(.success(titles))
