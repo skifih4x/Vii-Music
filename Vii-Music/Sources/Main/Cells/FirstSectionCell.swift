@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FirstSectionCell: UICollectionViewCell {
     
@@ -56,14 +57,21 @@ class FirstSectionCell: UICollectionViewCell {
         addSubview(firstSectionCellImageView)
         addSubview(backgroundTitleView)
     }
-    
-    func configureCell(albumName: String, image: UIImage) {
-        titleLabel.text = albumName
-        firstSectionCellImageView.image = image
-//        loader.getRecipeImage(stringUrl: imageName) { image in
-//            self.firstSectionCellImageView.image = image
-//        }
+
+    func configure(model: Tracks) {
+        titleLabel.text = model.trackName
+//        artistNameLabel.text = model.artistName
+        guard let url = URL(string: model.artworkUrl100 ?? "") else { return }
+        firstSectionCellImageView.kf.setImage(with: url)
+
     }
+//    func configureCell(albumName: String, image: UIImage) {
+//        titleLabel.text = albumName
+//        firstSectionCellImageView.image = image
+////        loader.getRecipeImage(stringUrl: imageName) { image in
+////            self.firstSectionCellImageView.image = image
+////        }
+//    }
         
         func setConstraints() {
             NSLayoutConstraint.activate([

@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol FavoriteViewControllerProtocol: AnyObject {
+    func getFavoriteTrack(track: String)
+}
 class FavoriteViewController: UIViewController {
 
     // MARK: - Properties
 
     private var titles: [TitleItem] = [TitleItem]()
-
+    var trackArray: [String] = []
+    lazy var vc = PlayViewController()
+    let manager = UserDefaultManager()
     //MARK: - UIElements
 
     private lazy var tableView: UITableView = {
@@ -30,7 +35,13 @@ class FavoriteViewController: UIViewController {
         setupHierarchy()
         tableDelegate()
         setupNavigation()
+
+        trackArray.append(manager.getData())
         tableView.reloadData()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+
     }
 
     override func viewDidLayoutSubviews() {
@@ -62,7 +73,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        trackArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,11 +82,19 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         //let title = titles[indexPath.row]
-        cell.configure(model: "Songer Name")
+        cell.configure(model: trackArray[indexPath.row])
+        print(trackArray[indexPath.row])
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+    }
+}
+
+extension FavoriteViewController: FavoriteViewControllerProtocol {
+    func getFavoriteTrack(track: String) {
+        trackArray.append(track)
+        tableView.reloadData()
     }
 }

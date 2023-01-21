@@ -11,6 +11,10 @@ import UIKit
     
     let manager = MusicManager()
     var tracks = [Tracks]()
+     func getTracks() -> [Tracks] {
+         return self.tracks
+     }
+
      var timer: Timer?
 
     private let collectionView: UICollectionView = {
@@ -103,6 +107,9 @@ import UIKit
         haptic.prepare()
         setDelegates()
         tableView.isHidden = true
+
+        fetchSong(songName: "jack")
+        collectionView.reloadData()
     }
     func setupViews() {
         
@@ -139,13 +146,13 @@ import UIKit
         haptic.selectionChanged()
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            print("1")
+            fetchSong(songName: "jack")
         case 1:
-            print("2")
+            fetchSong(songName: "james")
         case 2:
-            print("3")
+            fetchSong(songName: "system")
         default:
-            print("4")
+            fetchSong(songName: "task")
         }
     }
 
@@ -196,6 +203,7 @@ extension MainViewController {
                 guard let trackModel = trackModel else {return}
                 self?.tracks = trackModel.results
                 self?.tableView.reloadData()
+                self?.collectionView.reloadData()
             } else {
                 print(error!.localizedDescription)
             }
@@ -320,7 +328,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sections[section].count
+        getTracks().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -331,7 +339,8 @@ extension MainViewController: UICollectionViewDataSource {
             else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(albumName: first[indexPath.row].title, image: first[indexPath.row].image)
+            let track = getTracks()[indexPath.row]
+            cell.configure(model: track)
             return cell
             
             
@@ -374,12 +383,12 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tracks.count
+        getTracks().count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else { return UITableViewCell() }
-        let track = tracks[indexPath.row]
+        let track = getTracks()[indexPath.row]
         cell.configure(model: track)
         return cell
     }

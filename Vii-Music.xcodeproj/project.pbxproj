@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003EC674297C01A7009EFF86 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EC673297C01A7009EFF86 /* UserDefaultManager.swift */; };
+		003EC676297C0279009EFF86 /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 003EC675297C0279009EFF86 /* Property List.plist */; };
 		00492AD62974B0FC00F9E0E6 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00492AD52974B0FC00F9E0E6 /* FavoriteViewController.swift */; };
 		00492AD82974B11500F9E0E6 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00492AD72974B11500F9E0E6 /* FavoritesCell.swift */; };
 		00705A9A297AEC1800AEE429 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 00705A99297AEC1800AEE429 /* Kingfisher */; };
@@ -66,6 +68,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		003EC673297C01A7009EFF86 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		003EC675297C0279009EFF86 /* Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 		00492AD52974B0FC00F9E0E6 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		00492AD72974B11500F9E0E6 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		008C954E296B416D00730E7A /* Vii-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vii-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -424,6 +428,8 @@
 			isa = PBXGroup;
 			children = (
 				ECC494EF296B6A9200571028 /* PlayViewController.swift */,
+				003EC673297C01A7009EFF86 /* UserDefaultManager.swift */,
+				003EC675297C0279009EFF86 /* Property List.plist */,
 				ECF836212973F90F005C10E4 /* PlayView.swift */,
 			);
 			path = Play;
@@ -513,6 +519,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				003EC676297C0279009EFF86 /* Property List.plist in Resources */,
 				ECDC43122976AA1600A804E8 /* Playboi Carti - Molly.mp3 in Resources */,
 				008C955E296B416F00730E7A /* LaunchScreen.storyboard in Resources */,
 				008C955B296B416F00730E7A /* Assets.xcassets in Resources */,
@@ -546,6 +553,7 @@
 				008C9552296B416D00730E7A /* AppDelegate.swift in Sources */,
 				EC2D4987296D94F500C2C121 /* LoginInputController.swift in Sources */,
 				ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */,
+				003EC674297C01A7009EFF86 /* UserDefaultManager.swift in Sources */,
 				ECC494EB296B67F600571028 /* APICaller.swift in Sources */,
 				00CA8C2429782DCF00B707B0 /* NetworkFetch.swift in Sources */,
 				ECDC43162976C8E200A804E8 /* InfoAlbumViewController.swift in Sources */,

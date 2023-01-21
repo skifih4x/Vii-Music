@@ -16,7 +16,7 @@ enum Constants {
 final class PlayViewController: UIViewController {
 
     // MARK: - Properties
-
+    let manager = UserDefaultManager()
     private var player: AVPlayer!
     var bRec: Bool = true
 
@@ -97,6 +97,8 @@ final class PlayViewController: UIViewController {
             playView?.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         } else {
             playView?.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            //tap
+            manager.setData(data: "Adiya")
         }
     }
 
