@@ -32,6 +32,7 @@ final class PlayViewController: UIViewController {
         view = PlayView()
         setupTarget()
         setupPlayer()
+        setupGestureRecognizers()
     }
 
     //MARK: - Setup
@@ -39,8 +40,18 @@ final class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupGestureRecognizers()
+        
     }
-
+    private func setupGestureRecognizers() {
+        let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(swipe:)))
+        downSwipe.direction = UISwipeGestureRecognizer.Direction.down
+        view.addGestureRecognizer(downSwipe)
+    }
+    
+    @objc func swipeAction(swipe: UISwipeGestureRecognizer) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
     
     func setupTarget() {
         playView?.likeButton.addTarget(self, action: #selector(addFavoriteTrack), for: .touchUpInside)
