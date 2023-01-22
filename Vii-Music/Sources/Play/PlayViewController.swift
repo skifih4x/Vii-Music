@@ -13,12 +13,18 @@ enum Constants {
     static let minute = 60
 }
 
+protocol TrackMovingDelegate: AnyObject {
+    func moveBack() -> Tracks?
+    func moveNext() -> Tracks?
+}
+
 final class PlayViewController: UIViewController {
 
     // MARK: - Properties
     let manager = UserDefaultManager()
     private var player: AVPlayer!
     var bRec: Bool = true
+    weak var delegate: TrackMovingDelegate?
 
     //MARK: - LifeCycle
 
@@ -92,17 +98,36 @@ final class PlayViewController: UIViewController {
             }
         }
         playTrack(previewUrl: viewModel.previewUrl)
-        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1000), queue: DispatchQueue.main) { [self]
-            (time) in
+//        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1000), queue: DispatchQueue.main) { [self]
+//            (time) in
+//
+//            playView?.slider.maximumValue = Float(player.currentItem?.duration.seconds ?? 0)
+////            playView?.slider.value = Float(time.seconds)
+//
+//            playView?.timePassedLabel.text = convertTimeToString(time: time)
+//            playView?.timeLeftLabel.text = convertTimeToString(time: (player.currentItem?.duration ?? CMTime()) - time)
+//        }
+        observePlayerTime()
+        updateCurrentTime()
+    }
 
-            playView?.slider.maximumValue = Float(player.currentItem?.duration.seconds ?? 0)
-            playView?.slider.value = Float(time.seconds)
+    func observePlayerTime() {
+        let interval = CMTimeMake(value: 1, timescale: 2)
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
+            self?.playView?.timeLeftLabel.text = time.toDisplayString()
 
-            playView?.timePassedLabel.text = convertTimeToString(time: time)
-            playView?.timeLeftLabel.text = convertTimeToString(time: (player.currentItem?.duration ?? CMTime()) - time)
+            let durationTime = self?.player.currentItem?.duration
+            let currentDurationText = ((durationTime ?? CMTimeMake(value: 1, timescale: 1)) - time).toDisplayString()
+            self?.playView?.timePassedLabel.text = "-\(currentDurationText)"
+            self?.updateCurrentTime()
         }
-//        observePlayerTime()
-//        updateCurrentTime()
+    }
+
+    func updateCurrentTime() {
+        let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
+        let durationSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
+        let percentage = currentTimeSeconds / durationSeconds
+        self.playView?.slider.value = Float(percentage)
     }
 
     func playTrack(previewUrl: String?) {
@@ -111,21 +136,6 @@ final class PlayViewController: UIViewController {
         player = AVPlayer(playerItem: playerItem)
         player.play()
     }
-
-//    func setupPlayer() {
-//
-//        player = AVPlayer(url:URL(fileURLWithPath:Bundle.main.path(forResource:"Playboi Carti - Molly",ofType: "mp3")!))
-//
-//        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1000), queue: DispatchQueue.main) { [self]
-//            (time) in
-//
-//            playView?.slider.maximumValue = Float(player.currentItem?.duration.seconds ?? 0)
-//            playView?.slider.value = Float(time.seconds)
-//
-//            playView?.timePassedLabel.text = convertTimeToString(time: time)
-//            playView?.timeLeftLabel.text = convertTimeToString(time: (player.currentItem?.duration ?? CMTime()) - time)
-//        }
-//    }
 
     @objc private func didTapPlayButton() {
         if player.timeControlStatus == .playing {
@@ -138,9 +148,15 @@ final class PlayViewController: UIViewController {
     }
 
     @objc private func didTapSlider() {
-        player.seek(to: CMTime(seconds: Double(playView?.slider.value ?? 0),
-                               preferredTimescale: 1000))
-        playView?.timePassedLabel.text = "\(String(describing: playView?.slider.value))"
+//        player.seek(to: CMTime(seconds: Double(playView?.slider.value ?? 0),
+//                               preferredTimescale: 1000))
+//        playView?.timePassedLabel.text = "\(String(describing: playView?.slider.value))"
+        let percentage = playView?.slider.value ?? 0
+        guard let duration = player.currentItem?.duration else { return }
+        let durationInSeconds = CMTimeGetSeconds(duration)
+        let seekTimeUnSeconds = Float64(percentage) * durationInSeconds
+        let seekTime = CMTimeMakeWithSeconds(seekTimeUnSeconds, preferredTimescale: 1)
+        player.seek(to: seekTime)
     }
 
     @objc private func addFavoriteTrack() {
@@ -150,7 +166,7 @@ final class PlayViewController: UIViewController {
         } else {
             playView?.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             //tap
-            manager.setData(data: "Adiya")
+            manager.setData(data: playView?.trackLabel.text ?? "123")
         }
     }
 
@@ -159,11 +175,15 @@ final class PlayViewController: UIViewController {
     }
     
     @objc private func didTapBackButton() {
-
+        let cellViewModel = delegate?.moveBack()
+        guard let cellInfo = cellViewModel else { return }
+        set(viewModel: cellInfo)
     }
 
     @objc private func didTapNextButton() {
-        
+        let cellViewModel = delegate?.moveNext()
+        guard let cellInfo = cellViewModel else { return }
+        set(viewModel: cellInfo)
     }
 }
 

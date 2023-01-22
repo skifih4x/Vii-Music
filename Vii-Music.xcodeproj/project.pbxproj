@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		003EC674297C01A7009EFF86 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EC673297C01A7009EFF86 /* UserDefaultManager.swift */; };
 		003EC676297C0279009EFF86 /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 003EC675297C0279009EFF86 /* Property List.plist */; };
+		003EC678297D6BAB009EFF86 /* CMTime + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003EC677297D6BAB009EFF86 /* CMTime + Extention.swift */; };
 		00492AD62974B0FC00F9E0E6 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00492AD52974B0FC00F9E0E6 /* FavoriteViewController.swift */; };
 		00492AD82974B11500F9E0E6 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00492AD72974B11500F9E0E6 /* FavoritesCell.swift */; };
 		00705A9A297AEC1800AEE429 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 00705A99297AEC1800AEE429 /* Kingfisher */; };
@@ -70,6 +71,7 @@
 /* Begin PBXFileReference section */
 		003EC673297C01A7009EFF86 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		003EC675297C0279009EFF86 /* Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
+		003EC677297D6BAB009EFF86 /* CMTime + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + Extention.swift"; sourceTree = "<group>"; };
 		00492AD52974B0FC00F9E0E6 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		00492AD72974B11500F9E0E6 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		008C954E296B416D00730E7A /* Vii-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vii-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -386,6 +388,7 @@
 				ECC3B61B296C210300E7702B /* Extensions+TextField.swift */,
 				ECD2CD89296C4A37008F9542 /* Extensions+Label.swift */,
 				ECD2CD8D296C5487008F9542 /* Extensions+UIStackView.swift */,
+				003EC677297D6BAB009EFF86 /* CMTime + Extention.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				ECC494DF296B645200571028 /* MainTabBarController.swift in Sources */,
 				003EC674297C01A7009EFF86 /* UserDefaultManager.swift in Sources */,
 				ECC494EB296B67F600571028 /* APICaller.swift in Sources */,
+				003EC678297D6BAB009EFF86 /* CMTime + Extention.swift in Sources */,
 				00CA8C2429782DCF00B707B0 /* NetworkFetch.swift in Sources */,
 				ECDC43162976C8E200A804E8 /* InfoAlbumViewController.swift in Sources */,
 				00CA8C2529782DCF00B707B0 /* MusicURL.swift in Sources */,

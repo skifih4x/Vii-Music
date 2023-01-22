@@ -408,6 +408,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let track = tracks[indexPath.row]
         let playerVC = PlayViewController()
         playerVC.set(viewModel: track)
+        playerVC.delegate = self
         navigationController?.pushViewController(playerVC, animated: true)
 //                playerVC.delegate = self
     }
@@ -450,6 +451,41 @@ extension MainViewController: UISearchBarDelegate {
 
         // Remove focus from the search bar.
         searchBar.endEditing(true)
+    }
+}
+
+extension MainViewController: TrackMovingDelegate {
+    func getTrack(isForwardTrack: Bool) -> Tracks? {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return nil }
+        tableView.deselectRow(at: indexPath, animated: true)
+        collectionView.deselectItem(at: indexPath, animated: true)
+        var nextIndexPath: IndexPath!
+        if isForwardTrack {
+            nextIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+            if nextIndexPath.row == tracks.count {
+                nextIndexPath.row = 0
+            }
+        } else {
+            nextIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            if nextIndexPath.row == -1 {
+                nextIndexPath.row = tracks.count - 1
+            }
+        }
+
+        tableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: .none)
+        collectionView.selectItem(at: nextIndexPath, animated: true, scrollPosition: .bottom)
+        let cellViewModel = tracks[indexPath.row]
+        return cellViewModel
+    }
+
+    func moveBack() -> Tracks? {
+        print("go back")
+        return getTrack(isForwardTrack: false)
+    }
+
+    func moveNext() -> Tracks? {
+        print("go forward")
+        return getTrack(isForwardTrack: true)
     }
 }
 
