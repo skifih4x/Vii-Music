@@ -29,13 +29,13 @@ final class MainTabBarViewController: UITabBarController {
         let favoriteViewController = FavoriteViewController()
         favoriteViewController.tabBarItem.image = UIImage(systemName: "heart")
 
-        let playViewController = PlayViewController()
-        playViewController.tabBarItem.image = UIImage(systemName: "play")
+//        let playViewController = PlayViewController()
+//        playViewController.tabBarItem.image = UIImage(systemName: "play")
 
         let personViewController = PersonViewController()
         personViewController.tabBarItem.image = UIImage(systemName: "person")
 
-        let controllers = [mainViewController, favoriteViewController, playViewController, personViewController]
+        let controllers = [mainViewController, favoriteViewController, personViewController]
         setViewControllers(controllers, animated: true)
     }
 }

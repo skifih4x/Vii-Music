@@ -11,6 +11,7 @@ import UIKit
     
     let manager = MusicManager()
     var tracks = [Tracks]()
+    var tracks2 = [Tracks]()
 
      func getTracks() -> [Tracks] {
          return self.tracks
@@ -110,6 +111,7 @@ import UIKit
         tableView.isHidden = true
 
         fetchSong(songName: "jack")
+        fetchSong2(songName: "trend")
         collectionView.reloadData()
         transferDataUser()
     }
@@ -201,6 +203,20 @@ extension MainViewController {
             if error == nil {
                 guard let trackModel = trackModel else {return}
                 self?.tracks = trackModel.results
+                self?.tableView.reloadData()
+                self?.collectionView.reloadData()
+            } else {
+                print(error!.localizedDescription)
+            }
+        }
+    }
+
+    func fetchSong2(songName: String) {
+        let urlString = "https://itunes.apple.com/search?entity=song&term=\(songName)"
+        NetworkFetch.shared.songFetch(urlString: urlString) { [weak self] trackModel, error in
+            if error == nil {
+                guard let trackModel = trackModel else {return}
+                self?.tracks2 = trackModel.results
                 self?.tableView.reloadData()
                 self?.collectionView.reloadData()
             } else {
@@ -321,12 +337,6 @@ extension MainViewController {
         }
     }
 }
-    
-
-//extension MainViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        collectionView.deselectItem(at: indexPath, animated: true)
-//    }
 
 //MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate { }
@@ -339,7 +349,10 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        getTracks().count
+        switch section {
+        case 0: return getTracks().count
+        default: return tracks2.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -360,7 +373,7 @@ extension MainViewController: UICollectionViewDataSource {
             else {
                 return UICollectionViewCell()
             }
-            let track = getTracks()[indexPath.row]
+            let track = tracks2[indexPath.row]
             cell.configure(model: track)
             return cell
         }

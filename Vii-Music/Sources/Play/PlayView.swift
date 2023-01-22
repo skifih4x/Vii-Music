@@ -125,7 +125,7 @@ final class PlayView: UIView {
     private func setupLayout() {
         NSLayoutConstraint.activate([
             
-            dragDownButton.topAnchor.constraint(equalTo: topAnchor, constant: 40),
+            dragDownButton.topAnchor.constraint(equalTo: topAnchor, constant: 60),
             dragDownButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             playingNowLabel.topAnchor.constraint(equalTo: dragDownButton.bottomAnchor, constant: 25),

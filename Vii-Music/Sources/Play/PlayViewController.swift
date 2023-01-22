@@ -114,11 +114,11 @@ final class PlayViewController: UIViewController {
     func observePlayerTime() {
         let interval = CMTimeMake(value: 1, timescale: 2)
         player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
-            self?.playView?.timeLeftLabel.text = time.toDisplayString()
+            self?.playView?.timePassedLabel.text = time.toDisplayString()
 
             let durationTime = self?.player.currentItem?.duration
             let currentDurationText = ((durationTime ?? CMTimeMake(value: 1, timescale: 1)) - time).toDisplayString()
-            self?.playView?.timePassedLabel.text = "-\(currentDurationText)"
+            self?.playView?.timeLeftLabel.text = "-\(currentDurationText)"
             self?.updateCurrentTime()
         }
     }
