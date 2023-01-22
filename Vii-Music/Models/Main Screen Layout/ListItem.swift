@@ -11,5 +11,5 @@ struct ListItem {
     let title: String
     let image: UIImage
     let id: Int?
-    let button: UIButton?
+    let button: UIImage?
 }

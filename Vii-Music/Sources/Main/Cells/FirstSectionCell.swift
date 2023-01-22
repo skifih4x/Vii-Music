@@ -20,8 +20,8 @@ class FirstSectionCell: UICollectionViewCell {
     
     private let backgroundTitleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .green
-        view.alpha = 0.6
+        view.backgroundColor = .darkGray
+        view.alpha = 0.8
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -31,8 +31,9 @@ class FirstSectionCell: UICollectionViewCell {
         label.text = "Random Meal"
         label.numberOfLines = 2
         label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 10)
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = .red
+        label.textColor = Theme.brightGreen
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

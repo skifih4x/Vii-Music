@@ -147,13 +147,13 @@ import UIKit
         haptic.selectionChanged()
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            fetchSong(songName: "jack")
+            fetchSong(songName: "popular")
         case 1:
-            fetchSong(songName: "james")
+            fetchSong(songName: "main")
         case 2:
-            fetchSong(songName: "system")
+            fetchSong(songName: "rock")
         default:
-            fetchSong(songName: "task")
+            fetchSong(songName: "overture")
         }
     }
 
@@ -265,7 +265,7 @@ extension MainViewController {
             group: group,
             behavior: .groupPaging,
             intergrouupSpacing: 10,
-            supplementaryItems: [supplementaryHeaderItem()],
+            supplementaryItems: [],
             contentInsets: false
         )
         section.contentInsets = .init(top: 10, leading: 10, bottom: 10, trailing: 10)
@@ -362,17 +362,15 @@ extension MainViewController: UICollectionViewDataSource {
             else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(albumName: second[indexPath.row].title, image: second[indexPath.row].image, button: second[indexPath.row].button!)
+//            cell.configureCell(albumName: second[indexPath.row].title, image: second[indexPath.row].image, button: second[indexPath.row].button!)
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        print(sections[indexPath.section].items[indexPath.row].id!)
-        
-//        let vc =
-//        navigationController?.pushViewController(vc, animated: true)
+  
+        let vc = PlayViewController()
+        navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -428,7 +426,7 @@ extension MainViewController: UISearchBarDelegate {
         if text != ""  {
             timer?.invalidate()
             timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
-                self?.fetchSong(songName: text ?? "james")
+                self?.fetchSong(songName: text ?? "")
             })
         } else if searchBar.text?.count == 0 {
             tracks = []
