@@ -360,7 +360,8 @@ extension MainViewController: UICollectionViewDataSource {
             else {
                 return UICollectionViewCell()
             }
-//            cell.configureCell(albumName: second[indexPath.row].title, image: second[indexPath.row].image, button: second[indexPath.row].button!)
+            let track = getTracks()[indexPath.row]
+            cell.configure(model: track)
             return cell
         }
     }
