@@ -28,7 +28,6 @@ struct MockData {
             .init(title: " ", image: UIImage(named: "note")!, id: 1, button: UIImage()),
             .init(title: " ", image: UIImage(named: "note")!, id: 1, button: UIImage()),
             .init(title: " ", image: UIImage(named: "note")!, id: 1, button: UIImage()),
-            .init(title: " ", image: UIImage(named: "note")!, id: 1, button: UIImage()),
             .init(title: " ", image: UIImage(named: "note")!, id: 1, button: UIImage())
         ])
     }()
