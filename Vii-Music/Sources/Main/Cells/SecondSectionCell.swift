@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SecondSectionCell: UICollectionViewCell {
     
@@ -96,10 +97,14 @@ class SecondSectionCell: UICollectionViewCell {
         addSubview(playImage)
     }
     
-    func configureCell(albumName: String, image: UIImage, button: UIImage) {
-//        titleLabel.text = albumName
-        secondSectionCellImageView.image = image
-//        playButton = button
+    func configure(model: Tracks) {
+        titleLabel.text = model.artistName
+        subTitleLabel.text = model.trackName
+        
+//        artistNameLabel.text = model.artistName
+        guard let url = URL(string: model.artworkUrl100 ?? "") else { return }
+        secondSectionCellImageView.kf.setImage(with: url)
+
     }
     
     func setConstraints() {

@@ -30,7 +30,7 @@ enum ListSection {
         case .first(_):
             return "First header"
         case .second(_):
-            return "Second header"
+            return "Best tracks"
         }
     }
 }
