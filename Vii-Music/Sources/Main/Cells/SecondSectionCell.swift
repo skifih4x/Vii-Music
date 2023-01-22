@@ -23,8 +23,9 @@ class SecondSectionCell: UICollectionViewCell {
         label.text = "Artist name"
         label.numberOfLines = 1
         label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 12)
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = .red
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -34,27 +35,35 @@ class SecondSectionCell: UICollectionViewCell {
         label.text = "Track name"
         label.numberOfLines = 1
         label.textAlignment = .center
+        label.font = .systemFont(ofSize: 12)
         label.adjustsFontForContentSizeCategory = true
-        label.textColor = .red
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private var playButton: UIButton = {
-       let button = UIButton()
-//        button.imageView?.image = UIImage(systemName: "play.circle")
-        button.backgroundColor = .yellow
-        button.setImage(UIImage(systemName: "play.circle"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private var playImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "play.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
+        imageView.tintColor = Theme.brightGreen
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let separator: UIView = {
+       let separator = UIView()
+        separator.backgroundColor = .white
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        return separator
     }()
     
     private let stackView: UIStackView = {
        let stack = UIStackView()
         stack.axis = .vertical
-        stack.distribution = .equalSpacing
+        stack.distribution = .equalCentering
         stack.alignment = .leading
-        stack.spacing = 5
+        stack.spacing = 1
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -71,21 +80,23 @@ class SecondSectionCell: UICollectionViewCell {
     }
     
     func setupView() {
-        backgroundColor = .blue
+        backgroundColor = .gray
 //        layer.cornerRadius = 10
         layer.masksToBounds = true
+        layer.cornerRadius = 10
         
         
         addSubview(secondSectionCellImageView)
         
         addSubview(stackView)
         stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(separator)
         stackView.addArrangedSubview(subTitleLabel)
         
-        addSubview(playButton)
+        addSubview(playImage)
     }
     
-    func configureCell(albumName: String, image: UIImage, button: UIButton) {
+    func configureCell(albumName: String, image: UIImage, button: UIImage) {
 //        titleLabel.text = albumName
         secondSectionCellImageView.image = image
 //        playButton = button
@@ -94,23 +105,28 @@ class SecondSectionCell: UICollectionViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             secondSectionCellImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            secondSectionCellImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            secondSectionCellImageView.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -20),
+            secondSectionCellImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            secondSectionCellImageView.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -40),
             secondSectionCellImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
             
             secondSectionCellImageView.heightAnchor.constraint(equalToConstant: 25),
             secondSectionCellImageView.widthAnchor.constraint(equalToConstant: 25),
             
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            stackView.leadingAnchor.constraint(equalTo: secondSectionCellImageView.trailingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: playButton.leadingAnchor, constant: -5),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+//            stackView.leadingAnchor.constraint(equalTo: secondSectionCellImageView.trailingAnchor, constant: 40),
+            stackView.trailingAnchor.constraint(equalTo: playImage.leadingAnchor, constant: -40),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
-            playButton.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            playButton.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 5),
-            playButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
+            separator.heightAnchor.constraint(equalToConstant: 1),
+            separator.widthAnchor.constraint(equalToConstant: 200),
             
+            playImage.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+//            playButton.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 40),
+            playImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            playImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
+//            playButton.heightAnchor.constraint(equalToConstant: 25),
+            playImage.widthAnchor.constraint(equalToConstant: 25)
+//
 
         ])
     }
