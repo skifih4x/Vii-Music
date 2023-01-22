@@ -10,7 +10,15 @@ import UIKit
 final class PlayView: UIView {
 
     //MARK: - UIElements
-
+    let dragDownButton: UIButton = {
+       let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.tintColor = .white
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     let playButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
@@ -111,11 +119,16 @@ final class PlayView: UIView {
         addSubview(slider)
         addSubview(backgroundPlayImage)
         addSubview(playButton)
+        addSubview(dragDownButton)
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            playingNowLabel.topAnchor.constraint(equalTo: topAnchor, constant: 65),
+            
+            dragDownButton.topAnchor.constraint(equalTo: topAnchor, constant: 40),
+            dragDownButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            playingNowLabel.topAnchor.constraint(equalTo: dragDownButton.bottomAnchor, constant: 25),
             playingNowLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             logoTrack.topAnchor.constraint(equalTo: playingNowLabel.bottomAnchor, constant: 25),

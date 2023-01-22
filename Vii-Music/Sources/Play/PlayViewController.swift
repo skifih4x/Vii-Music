@@ -38,15 +38,17 @@ final class PlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
 
+    
     func setupTarget() {
         playView?.likeButton.addTarget(self, action: #selector(addFavoriteTrack), for: .touchUpInside)
         playView?.playButton.addTarget(self, action: #selector(didTapPlayButton), for: .touchUpInside)
         playView?.slider.addTarget(self, action: #selector(didTapSlider), for: .touchUpInside)
         playView?.backTrackButton.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
         playView?.nextTrackButton.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
+        playView?.dragDownButton.addTarget(self, action: #selector(didDragDownTapped), for: .touchUpInside)
     }
 
     func convertTimeToString(time: CMTime) -> String {
@@ -102,11 +104,35 @@ final class PlayViewController: UIViewController {
         }
     }
 
+    @objc func didDragDownTapped() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     @objc private func didTapBackButton() {
 
     }
 
     @objc private func didTapNextButton() {
         
+    }
+}
+
+import SwiftUI
+struct ListProvider: PreviewProvider {
+    static var previews: some View {
+        ContainterView().edgesIgnoringSafeArea(.all)
+    }
+    
+    struct ContainterView: UIViewControllerRepresentable {
+        let listVC = PlayViewController()
+        func makeUIViewController(context:
+                                  UIViewControllerRepresentableContext<ListProvider.ContainterView>) -> PlayViewController {
+            return listVC
+        }
+        
+        func updateUIViewController(_ uiViewController:
+                                    ListProvider.ContainterView.UIViewControllerType, context:
+                                    UIViewControllerRepresentableContext<ListProvider.ContainterView>) {
+        }
     }
 }
