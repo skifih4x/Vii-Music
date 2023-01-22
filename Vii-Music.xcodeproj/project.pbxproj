@@ -180,7 +180,6 @@
 				ECC494E5296B664C00571028 /* Common */,
 				ECC494DB296B614D00571028 /* Sources */,
 				ECC494DD296B617600571028 /* Resources */,
-				EC324F932975D3A600988CBA /* MusicModel.xcdatamodeld */,
 			);
 			path = "Vii-Music";
 			sourceTree = "<group>";
@@ -446,6 +445,7 @@
 		ECDC430E29768CB400A804E8 /* DataPersistenceManager */ = {
 			isa = PBXGroup;
 			children = (
+				EC324F932975D3A600988CBA /* MusicModel.xcdatamodeld */,
 				ECDC430F29768CC600A804E8 /* DataPersistenceManager.swift */,
 			);
 			path = DataPersistenceManager;

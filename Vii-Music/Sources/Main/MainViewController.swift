@@ -110,6 +110,7 @@ import UIKit
 
         fetchSong(songName: "jack")
         collectionView.reloadData()
+        transferDataUser()
     }
     func setupViews() {
         
@@ -308,6 +309,18 @@ extension MainViewController {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
+    }
+
+    private func transferDataUser() {
+        AuthService.shared.fetchUser { [weak self] user, error in
+            guard let self = self else { return }
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let user = user {
+                self.headerLabel.text = "Hello, \(user.userName)"
+            }
+        }
     }
 }
     
