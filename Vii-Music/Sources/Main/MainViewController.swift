@@ -11,6 +11,7 @@ import UIKit
     
     let manager = MusicManager()
     var tracks = [Tracks]()
+
      func getTracks() -> [Tracks] {
          return self.tracks
      }
@@ -134,7 +135,6 @@ import UIKit
      
      override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
-//         navigationController?.navigationBar.isHidden = true
          navigationController?.isNavigationBarHidden = true
      }
 
@@ -167,7 +167,6 @@ import UIKit
 
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            //            searchBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -500),
             searchBar.heightAnchor.constraint(equalToConstant: 40),
 
             tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
@@ -198,7 +197,6 @@ extension MainViewController {
 
     func fetchSong(songName: String) {
         let urlString = "https://itunes.apple.com/search?entity=song&term=\(songName)"
-        print(urlString)
         NetworkFetch.shared.songFetch(urlString: urlString) { [weak self] trackModel, error in
             if error == nil {
                 guard let trackModel = trackModel else {return}
@@ -369,8 +367,10 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
   
-        let vc = PlayViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let track = tracks[indexPath.row]
+        let playerVC = PlayViewController()
+        playerVC.set(viewModel: track)
+        navigationController?.pushViewController(playerVC, animated: true)
         
     }
     
@@ -403,8 +403,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(model: track)
         return cell
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let track = tracks[indexPath.row]
+        let playerVC = PlayViewController()
+        playerVC.set(viewModel: track)
+        navigationController?.pushViewController(playerVC, animated: true)
+//                playerVC.delegate = self
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -441,8 +446,6 @@ extension MainViewController: UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         tableView.isHidden =  true
-//        self.searchBar.resignFirstResponder()
-//        self.searchBar.endEditing(true)
         searchBar.setShowsCancelButton(false, animated: true)
 
         // Remove focus from the search bar.

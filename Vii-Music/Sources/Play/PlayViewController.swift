@@ -31,7 +31,7 @@ final class PlayViewController: UIViewController {
         super.loadView()
         view = PlayView()
         setupTarget()
-        setupPlayer()
+//        setupPlayer()
         setupGestureRecognizers()
     }
 
@@ -43,6 +43,11 @@ final class PlayViewController: UIViewController {
         setupGestureRecognizers()
         
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        playView?.playButton.setImage(UIImage(systemName: "pause"), for: .normal)
+    }
+
     private func setupGestureRecognizers() {
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(swipe:)))
         downSwipe.direction = UISwipeGestureRecognizer.Direction.down
@@ -73,10 +78,20 @@ final class PlayViewController: UIViewController {
         return timeFormatString
     }
 
-    func setupPlayer() {
+    func set(viewModel: Tracks) {
 
-        player = AVPlayer(url:URL(fileURLWithPath:Bundle.main.path(forResource:"Playboi Carti - Molly",ofType: "mp3")!))
+        let string600 = viewModel.artworkUrl100?.replacingOccurrences(of: "100x100", with: "350x350")
+        guard let url = URL(string: string600 ?? "") else { return }
 
+        DispatchQueue.global().async {
+            guard let data = try? Data(contentsOf: url) else { return }
+            DispatchQueue.main.async {
+                self.playView?.trackLabel.text = viewModel.trackName
+                self.playView?.artistLabel.text = viewModel.artistName
+                self.playView?.logoTrack.image = UIImage(data: data)
+            }
+        }
+        playTrack(previewUrl: viewModel.previewUrl)
         player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1000), queue: DispatchQueue.main) { [self]
             (time) in
 
@@ -86,7 +101,31 @@ final class PlayViewController: UIViewController {
             playView?.timePassedLabel.text = convertTimeToString(time: time)
             playView?.timeLeftLabel.text = convertTimeToString(time: (player.currentItem?.duration ?? CMTime()) - time)
         }
+//        observePlayerTime()
+//        updateCurrentTime()
     }
+
+    func playTrack(previewUrl: String?) {
+        guard let url = URL(string: previewUrl ?? "") else { return }
+        let playerItem:AVPlayerItem = AVPlayerItem(url: url)
+        player = AVPlayer(playerItem: playerItem)
+        player.play()
+    }
+
+//    func setupPlayer() {
+//
+//        player = AVPlayer(url:URL(fileURLWithPath:Bundle.main.path(forResource:"Playboi Carti - Molly",ofType: "mp3")!))
+//
+//        player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1000), queue: DispatchQueue.main) { [self]
+//            (time) in
+//
+//            playView?.slider.maximumValue = Float(player.currentItem?.duration.seconds ?? 0)
+//            playView?.slider.value = Float(time.seconds)
+//
+//            playView?.timePassedLabel.text = convertTimeToString(time: time)
+//            playView?.timeLeftLabel.text = convertTimeToString(time: (player.currentItem?.duration ?? CMTime()) - time)
+//        }
+//    }
 
     @objc private func didTapPlayButton() {
         if player.timeControlStatus == .playing {

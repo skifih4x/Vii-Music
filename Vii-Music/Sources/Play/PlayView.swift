@@ -54,7 +54,7 @@ final class PlayView: UIView {
         return button
     }()
 
-    private lazy var logoTrack: UIImageView = {
+     lazy var logoTrack: UIImageView = {
         let image = UIImage(named: "logoBackground")
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleToFill
@@ -63,11 +63,11 @@ final class PlayView: UIView {
         return imageView
     }()
 
-    private lazy var playingNowLabel = UILabel(text: "Playing Now", size: 16, textColor: .white)
+    lazy var playingNowLabel = UILabel(text: "Playing Now", size: 16, textColor: .white)
 
-    private lazy var trackLabel = UILabel(text: "Adiyee",size: 22, textColor: .white)
+    lazy var trackLabel = UILabel(text: "Adiyee",size: 22, textColor: .white)
 
-    private lazy var artistLabel = UILabel(text: "Name", size: 14, textColor: .white)
+    lazy var artistLabel = UILabel(text: "Name", size: 14, textColor: .white)
 
     lazy var timePassedLabel = UILabel(text: "0:00",size: 11, textColor: .white)
 
@@ -82,7 +82,7 @@ final class PlayView: UIView {
         return slider
     }()
 
-    private let backgroundPlayImage: UIImageView = {
+    let backgroundPlayImage: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 30
         imageView.layer.masksToBounds = true

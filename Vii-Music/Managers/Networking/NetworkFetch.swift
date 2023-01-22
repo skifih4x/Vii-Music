@@ -12,13 +12,7 @@ struct NetworkFetch {
     static let shared = NetworkFetch()
     
     func albumFetchArtists(completion: @escaping (Result<AlbumModel, Error> ) -> Void ) {
-        
-        // artists ID's and AMG artist ID's
-        // Metallica - 3996865 _ 4906
-        // Nirvana - 112018 _ 5034
-        // Pink Floyd - 487143 _ 76669
-        //
-        
+
         guard let url = URL(string: "https://itunes.apple.com/search?term=metallica&entity=album&attribute=albumTerm") else {return}
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data, error == nil else {
