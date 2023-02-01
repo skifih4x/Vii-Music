@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct TitleViewModel {
+    let artistName: String
+    let trackName: String
+}
