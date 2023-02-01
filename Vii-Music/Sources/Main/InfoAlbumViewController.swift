@@ -62,7 +62,7 @@ extension InfoAlbumViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         //let title = titles[indexPath.row]
-        cell.configure(model: "Songer Name")
+        //cell.configure(model: "Songer Name")
         return cell
     }
 

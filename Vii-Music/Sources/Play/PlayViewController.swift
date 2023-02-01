@@ -20,10 +20,15 @@ protocol TrackMovingDelegate: AnyObject {
 
 final class PlayViewController: UIViewController {
 
+
     // MARK: - Properties
-    let manager = UserDefaultManager()
+
+    private let corDataManager = DataPersistenceManager.shared
+    private var isFavorite = true
+    private var previewUrl: String?
+    var currentTrack: Tracks?
+
     private var player: AVPlayer!
-    var bRec: Bool = true
     weak var delegate: TrackMovingDelegate?
 
     //MARK: - LifeCycle
@@ -85,7 +90,7 @@ final class PlayViewController: UIViewController {
     }
 
     func set(viewModel: Tracks) {
-
+        currentTrack = viewModel
         let string600 = viewModel.artworkUrl100?.replacingOccurrences(of: "100x100", with: "350x350")
         guard let url = URL(string: string600 ?? "") else { return }
 
@@ -159,15 +164,25 @@ final class PlayViewController: UIViewController {
         player.seek(to: seekTime)
     }
 
-    @objc private func addFavoriteTrack() {
-        bRec = !bRec
-        if bRec {
+    private func changeFavorite(isFavorite: Bool) {
+        if isFavorite {
             playView?.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         } else {
             playView?.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            //tap
-            manager.setData(data: playView?.trackLabel.text ?? "123")
         }
+    }
+
+    @objc private func addFavoriteTrack() {
+        if isFavorite {
+            print("add")
+            guard let track = currentTrack else { return }
+            corDataManager.favoriteTitleWith(model: track)
+        } else {
+            print("delete")
+
+        }
+        isFavorite.toggle()
+        changeFavorite(isFavorite: isFavorite)
     }
 
     @objc func didDragDownTapped() {

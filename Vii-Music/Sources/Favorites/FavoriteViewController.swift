@@ -7,17 +7,19 @@
 
 import UIKit
 
-protocol FavoriteViewControllerProtocol: AnyObject {
-    func getFavoriteTrack(track: String)
-}
+//protocol FavoriteViewControllerProtocol: AnyObject {
+//    func getFavoriteTrack(track: String)
+//}
+
 class FavoriteViewController: UIViewController {
 
     // MARK: - Properties
 
     private var titles: [TitleItem] = [TitleItem]()
-    var trackArray: [String] = []
+    var tracks = [Tracks]()
     lazy var vc = PlayViewController()
-    let manager = UserDefaultManager()
+    let managerCoreData = DataPersistenceManager.shared
+
     //MARK: - UIElements
 
     private lazy var tableView: UITableView = {
@@ -36,12 +38,13 @@ class FavoriteViewController: UIViewController {
         tableDelegate()
         setupNavigation()
 
-        trackArray.append(manager.getData())
         tableView.reloadData()
+        fetchLocalStorageForFavorite()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     override func viewDidLayoutSubviews() {
@@ -62,6 +65,20 @@ class FavoriteViewController: UIViewController {
         view.backgroundColor = Theme.bgColor
         view.addSubview(tableView)
     }
+
+    private func fetchLocalStorageForFavorite() {
+        managerCoreData.fetchingTitlesFromDataBase { [weak self] result in
+            switch result {
+            case .success(let items):
+                self?.titles = items
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -73,7 +90,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        trackArray.count
+        titles.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,20 +98,45 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-        //let title = titles[indexPath.row]
-        cell.configure(model: trackArray[indexPath.row])
-        print(trackArray[indexPath.row])
+        let title = titles[indexPath.row]
+        cell.configure(with: TitleViewModel(
+            artistName: title.artistName ?? "artist",
+            trackName: title.trackName ?? "track"))
+
         return cell
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            switch editingStyle {
+            case .delete:
+                managerCoreData.deleteTitleWith(model: titles[indexPath.row]) { [weak self] result in
+                    switch result {
+                    case .success():
+                        print("Deleted from the database")
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                    self?.titles.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            default:
+                break;
+            }
+        }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+
+//        let track = tracks[indexPath.row]
+//        let playerVC = PlayViewController()
+//        playerVC.set(viewModel: track)
+//        navigationController?.pushViewController(playerVC, animated: true)
     }
 }
 
-extension FavoriteViewController: FavoriteViewControllerProtocol {
-    func getFavoriteTrack(track: String) {
-        trackArray.append(track)
-        tableView.reloadData()
-    }
-}
+//extension FavoriteViewController: FavoriteViewControllerProtocol {
+//    func getFavoriteTrack(track: String) {
+//        trackArray.append(track)
+//        tableView.reloadData()
+//    }
+//}

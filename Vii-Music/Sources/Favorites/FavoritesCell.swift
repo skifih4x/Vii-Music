@@ -65,6 +65,7 @@ class FavoritesCell: UITableViewCell {
     func setupLayout() {
         NSLayoutConstraint.activate([
             trackNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            trackNameLabel.widthAnchor.constraint(equalToConstant: 300),
             trackNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 7),
 
             artistNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
@@ -77,9 +78,9 @@ class FavoritesCell: UITableViewCell {
         ])
     }
 
-    func configure(model: String) {
-        trackNameLabel.text = model
-        artistNameLabel.text = model
+    public func configure(with model: TitleViewModel) {
+        trackNameLabel.text = model.trackName
+        artistNameLabel.text = model.artistName
     }
 }
 
